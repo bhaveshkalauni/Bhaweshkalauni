@@ -171,7 +171,7 @@ export default function Contact() {
                       Message Transmitted Successfully
                     </h4>
                     <p className="font-sans text-sm text-navy-500 dark:text-navy-400 max-w-md mx-auto leading-relaxed">
-                      Thank you for reaching out, Bhavesh. Your communication was securely received. I will review your inquiry and respond with a structured reply within 24 business hours.
+                      Thank you for reaching out, Bhawesh. Your communication was securely received. I will review your inquiry and respond with a structured reply within 24 business hours.
                     </p>
                     <button
                       onClick={() => setStatus("idle")}

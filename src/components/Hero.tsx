@@ -184,7 +184,7 @@ export default function Hero() {
                       Operations &amp; Consulting
                     </span>
                     <h3 className="font-sans text-xl font-bold text-white tracking-wide">
-                      Bhavesh Kalauni
+                      Bhawesh Kalauni
                     </h3>
                     <span className="block text-xs text-navy-300 font-medium">
                       NEOMA Business School

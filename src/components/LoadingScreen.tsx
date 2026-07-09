@@ -45,7 +45,7 @@ export default function LoadingScreen() {
               transition={{ delay: 0.3, duration: 0.6, ease: "easeOut" }}
               className="font-sans text-2xl md:text-3xl font-bold tracking-wider text-navy-900 dark:text-white uppercase"
             >
-              Bhavesh Kalauni
+              Bhawesh Kalauni
             </motion.h1>
 
             {/* Current Position / Tagline */}

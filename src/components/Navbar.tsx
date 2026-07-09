@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 import { motion, AnimatePresence } from "motion/react";
+import { personalInfo } from "../data";
 
 interface NavLink {
   label: string;
@@ -104,7 +105,7 @@ export default function Navbar() {
               BK
             </span>
             <span className="font-sans font-semibold tracking-tight text-navy-900 dark:text-white text-base md:text-lg">
-              Bhavesh <span className="text-brand-500 font-normal">Kalauni</span>
+              Bhawesh <span className="text-brand-500 font-normal">Kalauni</span>
             </span>
           </a>
 
@@ -140,8 +141,9 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center space-x-4">
             <ThemeToggle />
             <a
-              href="#contact"
-              onClick={(e) => handleLinkClick(e, "#contact")}
+              href={`https://mail.google.com/mail/?view=cm&fs=1&to=${personalInfo.contact.email}&su=Consulting%20Inquiry`}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center px-4 py-2 text-xs font-mono tracking-widest uppercase rounded bg-navy-900 text-white hover:bg-brand-600 dark:bg-white dark:text-navy-950 dark:hover:bg-brand-100 transition-all duration-200 shadow-sm cursor-pointer"
             >
               Consult Me <ArrowUpRight className="ml-1.5 w-3 h-3" />
@@ -194,8 +196,9 @@ export default function Navbar() {
               })}
               <div className="pt-4 px-4 border-t border-navy-100 dark:border-navy-900 mt-4">
                 <a
-                  href="#contact"
-                  onClick={(e) => handleLinkClick(e, "#contact")}
+                  href={`https://mail.google.com/mail/?view=cm&fs=1&to=${personalInfo.contact.email}&su=Consulting%20Inquiry`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-full inline-flex items-center justify-center px-4 py-3 text-xs font-mono tracking-widest uppercase rounded bg-navy-900 text-white hover:bg-brand-600 dark:bg-white dark:text-navy-950 hover:shadow-md transition-all duration-200"
                 >
                   Consult Me <ArrowUpRight className="ml-1.5 w-3.5 h-3.5" />

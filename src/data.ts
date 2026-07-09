@@ -8,7 +8,7 @@ import {
 } from "./types";
 
 export const personalInfo = {
-  name: "Bhavesh Kalauni",
+  name: "Bhawesh Kalauni",
   title: "Future Strategy Consultant",
   role: "Master in Management Student",
   institution: "NEOMA Business School",
