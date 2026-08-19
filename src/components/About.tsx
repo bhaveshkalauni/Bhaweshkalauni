@@ -11,14 +11,14 @@ export default function About() {
           <div>
             <div className="flex items-center gap-2 text-xs font-mono font-bold tracking-widest text-[#111214] uppercase mb-2">
               <span className="w-2.5 h-2.5 bg-[#20A0B5] inline-block"></span>
-              <span>03 // THE TRAJECTORY</span>
+              <span>03 // THE JOURNEY</span>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight uppercase text-[#111214]">
               Background &amp; Evolution
             </h2>
           </div>
           <p className="mt-4 md:mt-0 text-sm font-mono text-[#3F454A] max-w-md">
-            The deliberate convergence of engineering precision, business school strategy, and supply chain operations.
+            The progression connecting mechanical engineering fundamentals, management education, and supply chain operations.
           </p>
         </div>
 
@@ -52,7 +52,7 @@ export default function About() {
               {/* Core Competencies / Learnings */}
               <div className="pt-4 border-t-2 border-[#111214] space-y-2">
                 <div className="text-[10px] font-mono font-bold tracking-widest text-[#111214] uppercase">
-                  ACQUIRED RIGOR &amp; PERSPECTIVE
+                  KEY LEARNINGS &amp; FOUNDATIONS
                 </div>
                 <div className="space-y-1.5">
                   {phase.takeaways.map((item, idx) => (
@@ -72,16 +72,16 @@ export default function About() {
         <div className="mt-12 p-8 bg-[#111214] text-[#F3F2F0] border-2 border-[#111214] shadow-[6px_6px_0px_#20A0B5] grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
           <div className="lg:col-span-8 space-y-2">
             <div className="text-xs font-mono font-bold tracking-widest text-[#20A0B5] uppercase">
-              PHILOSOPHY //
+              PERSPECTIVE //
             </div>
             <p className="text-base sm:text-lg text-[#F7F7F6] font-normal leading-relaxed">
-              &ldquo;Supply chains are physical-digital networks governed by thermodynamics, statistical variance, and human decision systems. True optimization requires mastering both the physical assembly constraints and the financial bottom line.&rdquo;
+              &ldquo;Supply chains are complex networks governed by engineering constraints, statistical variance, and human decision systems. I am fascinated by the challenge of designing operations that are resilient, data-backed, and continuously evolving.&rdquo;
             </p>
           </div>
           <div className="lg:col-span-4 flex lg:justify-end">
             <div className="inline-flex items-center gap-2 px-4 py-2 text-xs font-mono font-bold uppercase border-2 border-[#20A0B5] bg-[#111214] text-[#20A0B5]">
               <span>BHAWESH KALAUNI</span>
-              <span className="text-[#F3F2F0]">/ 2026</span>
+              <span className="text-[#F3F2F0]">/ PORTFOLIO</span>
             </div>
           </div>
         </div>

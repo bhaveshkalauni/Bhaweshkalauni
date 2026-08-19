@@ -11,14 +11,14 @@ export default function Skills() {
           <div>
             <div className="flex items-center gap-2 text-xs font-mono font-bold tracking-widest text-[#111214] uppercase mb-2">
               <span className="w-2.5 h-2.5 bg-[#20A0B5] inline-block"></span>
-              <span>02 // FUNCTIONAL CAPABILITIES</span>
+              <span>02 // SKILLS &amp; EXPERTISE</span>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight uppercase text-[#111214]">
               Areas of Focus
             </h2>
           </div>
           <p className="mt-4 md:mt-0 text-sm font-mono text-[#3F454A] max-w-md">
-            Bridging mechanical engineering precision with strategic supply chain management and operations analytics.
+            Capabilities developed across mechanical engineering fundamentals, management coursework, and supply chain data analytics.
           </p>
         </div>
 
@@ -49,7 +49,7 @@ export default function Skills() {
                     <div className="flex items-baseline justify-between text-sm font-bold text-[#111214]">
                       <span>{item.name}</span>
                       <span className="text-[10px] font-mono font-bold text-[#20A0B5]">
-                        // CORE
+                        // SKILL
                       </span>
                     </div>
                     {item.detail && (

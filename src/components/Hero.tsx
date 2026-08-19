@@ -21,7 +21,7 @@ export default function Hero() {
         {/* Main Grid: Left copy, Right Spec Box */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
           
-          {/* Left Column: Bold Typography & Manifesto */}
+          {/* Left Column: Bold Typography & Personal Manifesto */}
           <div className="lg:col-span-8 space-y-6 md:space-y-8">
             
             {/* Eyebrow with Cyan indicator */}
@@ -30,51 +30,53 @@ export default function Hero() {
               <span>SUPPLY CHAIN · OPERATIONS · ANALYTICS</span>
             </div>
 
-            {/* Massive Bold Headline (Reference style) */}
-            <div className="space-y-1">
+            {/* Massive Bold Headline */}
+            <div className="space-y-2">
               <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[5.25rem] font-black tracking-tight uppercase text-[#111214] leading-[0.92]">
-                YOU HAVE BOTTLENECKS.
+                BUILDING.<br />
+                LEARNING.<br />
+                EVOLVING.
               </h1>
-              <div className="inline-block bg-[#20A0B5] text-[#111214] px-3 py-1 mt-1">
-                <span className="text-4xl sm:text-6xl md:text-7xl lg:text-[5.25rem] font-black tracking-tight uppercase leading-[0.92]">
-                  I SOLVE THEM.
+              <div className="inline-block bg-[#20A0B5] text-[#111214] px-3 py-1.5 mt-2">
+                <span className="text-xs sm:text-sm md:text-base font-black font-mono tracking-wider uppercase leading-snug">
+                  A PORTFOLIO OF IDEAS, PROJECTS &amp; EXPERIENCES
                 </span>
               </div>
             </div>
 
             {/* High-legibility Subtitle */}
             <p className="text-lg sm:text-xl text-[#3F454A] font-normal leading-relaxed max-w-2xl pt-2">
-              Master in Management candidate at <strong className="text-[#111214] font-semibold">NEOMA Business School</strong> with a <strong className="text-[#111214] font-semibold">Mechanical Engineering</strong> background. I find where operations stall, model multi-echelon inventory, and build resilient, data-backed supply networks.
+              Master in Management candidate at <strong className="text-[#111214] font-semibold">NEOMA Business School</strong> with a <strong className="text-[#111214] font-semibold">Mechanical Engineering</strong> background. Documenting my work in multi-echelon inventory modeling, process optimization, analytics, and operational strategy.
             </p>
 
-            {/* Action Buttons (Reference style with hard drop shadows) */}
+            {/* Action Buttons (Portfolio Oriented) */}
             <div className="pt-4 flex flex-wrap items-center gap-4">
               <a
-                href={`https://mail.google.com/mail/?view=cm&fs=1&to=${personalInfo.contact.email}&su=Supply%20Chain%20%26%20Operations%20Inquiry`}
+                href={`https://mail.google.com/mail/?view=cm&fs=1&to=${personalInfo.contact.email}&su=Hello%20Bhawesh%20-%20Portfolio%20Inquiry`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3.5 bg-[#20A0B5] text-[#111214] font-mono text-xs sm:text-sm font-bold tracking-wider uppercase border-2 border-[#111214] shadow-[4px_4px_0px_#111214] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_#111214] transition-all cursor-pointer"
               >
-                <span>BOOK A 30-MIN CALL →</span>
+                <span>GET IN TOUCH →</span>
               </a>
 
               <button
                 onClick={scrollToProjects}
                 className="inline-flex items-center gap-2 px-6 py-3.5 bg-[#F7F7F6] text-[#111214] font-mono text-xs sm:text-sm font-bold tracking-wider uppercase border-2 border-[#111214] shadow-[4px_4px_0px_#111214] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_#111214] transition-all cursor-pointer"
               >
-                <span>SEE THE WORK ↓</span>
+                <span>EXPLORE MY WORK ↓</span>
               </button>
             </div>
 
           </div>
 
-          {/* Right Column: Signature Spec Card (Exact Karol Binkowski layout) */}
+          {/* Right Column: Signature Spec Card */}
           <div className="lg:col-span-4 lg:pl-4">
             <div className="border-2 border-[#111214] shadow-[6px_6px_0px_#111214] bg-[#F7F7F6] overflow-hidden">
               
               {/* Card Header */}
               <div className="bg-[#20A0B5] text-[#111214] px-4 py-3 border-b-2 border-[#111214] font-mono font-bold text-xs uppercase tracking-widest flex items-center justify-between">
-                <span>OPERATIONS SPEC</span>
+                <span>PORTFOLIO SPEC</span>
                 <span className="text-[10px] font-bold">2026 //</span>
               </div>
 
@@ -97,7 +99,7 @@ export default function Hero() {
                 </div>
 
                 <div className="flex items-center px-4 py-3">
-                  <span className="w-24 text-[#3F454A] uppercase tracking-wider font-semibold">ENGAGE</span>
+                  <span className="w-24 text-[#3F454A] uppercase tracking-wider font-semibold">FOCUS</span>
                   <span className="text-[#111214] font-bold">Supply Chain · Ops · Strategy</span>
                 </div>
 
@@ -110,7 +112,7 @@ export default function Hero() {
                   <span className="w-24 text-[#3F454A] uppercase tracking-wider font-semibold">STATUS</span>
                   <div className="flex items-center gap-2">
                     <span className="w-2.5 h-2.5 rounded-full bg-[#1E7A62] animate-pulse"></span>
-                    <span className="text-[#1E7A62] font-bold uppercase">Available for Roles</span>
+                    <span className="text-[#1E7A62] font-bold uppercase">Open to Opportunities</span>
                   </div>
                 </div>
 

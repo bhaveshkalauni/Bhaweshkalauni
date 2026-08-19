@@ -11,7 +11,7 @@ export default function Contact() {
     setTimeout(() => setCopied(false), 2500);
   };
 
-  const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${personalInfo.contact.email}&su=Supply%20Chain%20%26%20Operations%20Inquiry%20-%20Bhawesh%20Kalauni`;
+  const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${personalInfo.contact.email}&su=Hello%20Bhawesh%20-%20Portfolio%20Inquiry`;
 
   return (
     <section id="contact" className="py-20 md:py-28 border-b-2 border-[#111214] bg-[#F3F2F0]">
@@ -24,10 +24,10 @@ export default function Contact() {
             <span>05 // GET IN TOUCH</span>
           </div>
           <h2 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight uppercase text-[#111214] leading-[1.02]">
-            Let's Discuss Supply Chain &amp; Operations.
+            Let's Connect.
           </h2>
           <p className="text-base sm:text-lg text-[#3F454A] max-w-2xl font-normal leading-relaxed">
-            Open for Supply Chain, Logistics, Operations Strategy roles, and consulting inquiries across Europe and worldwide.
+            I'm always open to discussing supply chain ideas, data modeling, graduate opportunities, or collaborative projects.
           </p>
         </div>
 
@@ -39,7 +39,7 @@ export default function Contact() {
             
             <div className="p-6 sm:p-8 bg-[#F7F7F6] border-2 border-[#111214] shadow-[5px_5px_0px_#111214] space-y-6">
               <div className="text-xs font-mono font-bold tracking-widest text-[#111214] uppercase">
-                DIRECT EMAIL DISPATCH
+                DIRECT EMAIL CONTACT
               </div>
 
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 p-4 bg-[#F3F2F0] border-2 border-[#111214]">
@@ -81,7 +81,7 @@ export default function Contact() {
                 </a>
 
                 <a
-                  href={`mailto:${personalInfo.contact.email}?subject=Supply%20Chain%20%26%20Operations%20Inquiry`}
+                  href={`mailto:${personalInfo.contact.email}?subject=Hello%20Bhawesh%20-%20Portfolio%20Inquiry`}
                   className="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-xs font-mono font-bold tracking-widest uppercase bg-[#F7F7F6] text-[#111214] border-2 border-[#111214] shadow-[4px_4px_0px_#111214] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_#111214] transition-all"
                 >
                   <span>STANDARD MAILTO</span>
@@ -106,7 +106,7 @@ export default function Contact() {
               <div className="flex items-center gap-3">
                 <Linkedin className="w-5 h-5 text-[#20A0B5]" />
                 <div>
-                  <div className="text-xs font-mono font-bold uppercase text-[#3F454A]">LINKEDIN</div>
+                  <div className="text-xs font-mono font-bold uppercase text-[#3F454A]">LINKEDIN PROFILE</div>
                   <div className="text-sm font-bold text-[#111214]">/in/bhaveshkalauni</div>
                 </div>
               </div>
@@ -118,7 +118,7 @@ export default function Contact() {
               <div className="flex items-center gap-3">
                 <MapPin className="w-5 h-5 text-[#20A0B5]" />
                 <div>
-                  <div className="text-xs font-mono font-bold uppercase text-[#3F454A]">LOCATION &amp; RELOCATION</div>
+                  <div className="text-xs font-mono font-bold uppercase text-[#3F454A]">CURRENT LOCATION</div>
                   <div className="text-sm font-bold text-[#111214]">
                     {personalInfo.location}
                   </div>
@@ -129,7 +129,7 @@ export default function Contact() {
                 <span className="text-[#3F454A]">TIMEZONE: CET / UTC+1</span>
                 <div className="flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-[#1E7A62] animate-pulse"></span>
-                  <span className="text-[#1E7A62] font-black uppercase">ACTIVE STATUS</span>
+                  <span className="text-[#1E7A62] font-black uppercase">OPEN TO ROLES</span>
                 </div>
               </div>
             </div>

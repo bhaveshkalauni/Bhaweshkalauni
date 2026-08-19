@@ -12,10 +12,10 @@ export const personalInfo = {
   role: "Master in Management Candidate",
   institution: "NEOMA Business School",
   location: "Rouen, France",
-  availability: "Available for Strategy, Operations & SCM Roles (2026 / 2027)",
+  availability: "Open to Supply Chain, Operations & Strategy Roles (2026 / 2027)",
   headline: "Supply Chain · Operations · Logistics · Procurement · Supply Chain Analytics",
-  summary: "Master in Management candidate at NEOMA Business School with a rigorous Mechanical Engineering background. Dedicated to eliminating operational friction, optimizing multi-echelon inventory, and building resilient, data-driven supply networks.",
-  positioning: "Bridging the gap between engineering analytical rigor and strategic operational execution to design agile, cost-effective global supply chains.",
+  summary: "Master in Management candidate at NEOMA Business School with a Mechanical Engineering background. Documenting my work in multi-echelon inventory modeling, process optimization, supply chain analytics, and operations strategy.",
+  positioning: "Connecting engineering analytical rigor with strategic business insights to explore and build agile, data-backed supply chain systems.",
   contact: {
     email: "bhaveshkalauni12@gmail.com",
     linkedin: "https://linkedin.com/in/bhaveshkalauni",
@@ -30,11 +30,11 @@ export const backgroundPhases: BackgroundPhase[] = [
     title: "MECHANICAL ENGINEERING",
     institution: "Graphic Era Hill University · Dehradun, India",
     period: "2021 — 2025",
-    summary: "Built a quantitative foundation grounded in physical systems, production line mechanics, thermo-fluids, and engineering mathematics. Developed a mindset centered on root-cause analysis, tolerance control, and zero-defect quality systems.",
+    summary: "Built a strong quantitative and analytical foundation in physical systems, thermodynamics, manufacturing mechanics, and applied mathematics. Developed structured problem-solving habits focused on root-cause analysis and system constraints.",
     takeaways: [
-      "Systems thinking and mathematical optimization algorithms",
-      "Factory floor production workflows and machine capability analysis",
-      "Tolerance engineering, CAD systems modeling, and failure-mode analysis"
+      "Systems thinking and mathematical optimization models",
+      "Production workflows, mechanical tolerances, and quality fundamentals",
+      "Engineering modeling, CAD systems, and structured failure analysis"
     ]
   },
   {
@@ -42,23 +42,23 @@ export const backgroundPhases: BackgroundPhase[] = [
     title: "MANAGEMENT & STRATEGY",
     institution: "NEOMA Business School (Grande École) · Rouen, France",
     period: "2026 — Present",
-    summary: "Refined strategic business intuition, financial modeling, and structured MECE problem-solving frameworks. Gained exposure to European commerce dynamics, corporate strategy, and organizational decision economics.",
+    summary: "Expanding into business strategy, corporate finance, and structured problem-solving frameworks. Exploring global trade dynamics, operational management, and organizational decision economics in a European context.",
     takeaways: [
-      "Corporate business strategy, market sizing, and P&L financial analysis",
-      "Executive communication and cross-cultural stakeholder management",
-      "High-stakes business case resolution and quantitative decision trees"
+      "Corporate strategy, market dynamics, and financial analysis",
+      "Executive communication and international cross-functional collaboration",
+      "Structured business case resolution and quantitative decision trees"
     ]
   },
   {
     phase: "03",
     title: "SUPPLY CHAIN & OPERATIONS",
-    institution: "Professional Focus & Career Aspiration",
-    period: "Core Specialization",
-    summary: "The natural convergence of engineering precision and strategic business management. Focused on driving end-to-end supply chain resilience, reducing working capital through inventory modeling, and optimizing procurement logistics.",
+    institution: "Core Focus & Professional Growth",
+    period: "Ongoing Specialization",
+    summary: "The natural convergence of engineering discipline and management strategy. Focused on understanding end-to-end supply networks, modeling inventory under uncertainty, and applying data analytics to operational challenges.",
     takeaways: [
-      "Multi-echelon inventory planning & safety stock optimization",
-      "Vendor lifecycle management, lead-time shrinkage & SLA controls",
-      "Supply chain analytics using Power BI, SQL, and advanced Excel modeling"
+      "Multi-echelon inventory planning & safety stock modeling",
+      "Procurement analytics, supplier evaluation, and logistics flow",
+      "Data visualization & modeling using Power BI, SQL, and Advanced Excel"
     ]
   }
 ];
@@ -69,9 +69,9 @@ export const caseStudies: CaseStudyItem[] = [
     index: "01",
     title: "Multi-Echelon Inventory Optimization & Safety Stock Strategy",
     category: "Supply Chain Analytics & Inventory Planning",
-    timeline: "Case Study & Quantitative Simulation",
-    role: "Lead Analyst & Modeler",
-    heroMetric: { value: "-22%", label: "Holding Cost Reduction" },
+    timeline: "Independent Modeling & Simulation Project",
+    role: "Lead Modeler & Analyst",
+    heroMetric: { value: "-22%", label: "Holding Cost Impact" },
     summary: "A quantitative supply chain simulation analyzing demand volatility, lead-time variance, and service-level trade-offs across a multi-tier distribution network.",
     problem: "Excessive inventory buffer allocations resulted in working capital bloat and warehouse overcapacity, while intermittent demand spikes still caused stockouts on high-margin SKUs.",
     objective: "Establish mathematically defensible safety stock parameters and reorder points to maintain a 98.5% service level while minimizing total inventory holding costs.",
@@ -104,11 +104,11 @@ export const caseStudies: CaseStudyItem[] = [
     id: "case-2",
     index: "02",
     title: "Digital Vendor Onboarding & Supply Chain Elasticity",
-    category: "Operations & Vendor Ecosystem Management",
+    category: "Operations & Workflow Engineering",
     timeline: "TechnoGiants Digisolutions (Operations Lead)",
     role: "Operations Lead",
-    heroMetric: { value: "-30%", label: "Integration Cycle Time" },
-    summary: "Restructured the end-to-end partner onboarding funnel and supplier catalog pipeline to expand retail network supply elasticity.",
+    heroMetric: { value: "-30%", label: "Integration Lead Time" },
+    summary: "Documenting how standardized catalog templates, automated verification routines, and Power BI pipeline dashboards streamlined vendor onboarding workflows.",
     problem: "Manual verification, siloed communication between sales and engineering, and fragmented catalog formatting caused a 21-day average vendor onboarding delay, throttling platform supply.",
     objective: "Compress partner onboarding lead time to under 14 days while increasing catalog compliance to >95% and eliminating data reconciliation errors.",
     context: "High-growth digital commerce platform scaling partner ecosystem from 15 to 50+ enterprise and regional retail suppliers.",
@@ -140,10 +140,10 @@ export const caseStudies: CaseStudyItem[] = [
     id: "case-3",
     index: "03",
     title: "Industrial Assembly Line Balancing & Lean Kaizen Study",
-    category: "Manufacturing Operations & Plant Logistics",
+    category: "Manufacturing Operations & Industrial Engineering",
     timeline: "Windlass Engineers Ltd. (Engineering Intern)",
-    role: "Industrial Operations Intern",
-    heroMetric: { value: "+18%", label: "Assembly Throughput" },
+    role: "Operations & Industrial Intern",
+    heroMetric: { value: "+18%", label: "Throughput Efficiency" },
     summary: "Conducted continuous improvement (Kaizen) time-and-motion studies to balance plant assembly workstations and optimize internal material handling routes.",
     problem: "Assembly line bottlenecking at Station 3 created work-in-progress (WIP) build-up, erratic operator idle times, and an unacceptable 4.8% end-of-line defect rate.",
     objective: "Balance workstation cycle times to match target takt time, reduce WIP floor inventory by 25%, and lower defect rates through 5S poka-yoke mechanisms.",
@@ -177,10 +177,10 @@ export const caseStudies: CaseStudyItem[] = [
     index: "04",
     title: "Strategic Sourcing & Total Cost of Ownership (TCO) Analysis",
     category: "Procurement Strategy & Spend Analytics",
-    timeline: "Supply Chain Strategy Project",
-    role: "Strategic Sourcing Analyst",
-    heroMetric: { value: "€140K", label: "Estimated Spend Savings" },
-    summary: "Formulated a structured procurement sourcing strategy evaluating single vs. dual-sourcing trade-offs, geopolitical freight risks, and Total Cost of Ownership (TCO).",
+    timeline: "Academic & Analytical Research Project",
+    role: "Strategic Sourcing Researcher",
+    heroMetric: { value: "€140K", label: "Model Identified Savings" },
+    summary: "Formulated a structured procurement sourcing model evaluating single vs. dual-sourcing trade-offs, geopolitical freight risks, and Total Cost of Ownership (TCO).",
     problem: "Single-source reliance on an overseas vendor for critical machined components exposed the organization to severe port congestion delays and freight rate spikes.",
     objective: "Design a Kraljic Matrix supplier classification and Total Cost of Ownership (TCO) model to de-risk procurement while capturing cost savings.",
     context: "Strategic evaluation of annual €2.4M direct materials spend across 18 critical component lines.",
@@ -213,11 +213,11 @@ export const expertiseAreas: ExpertiseCategory[] = [
   {
     id: "exp-supply-chain",
     category: "SUPPLY CHAIN",
-    subtitle: "Core Domain & Logistics Management",
+    subtitle: "Core Domain & Logistics Concepts",
     items: [
-      { name: "Demand Planning & S&OP", detail: "Forecasting statistical baselines, demand consensus, and seasonality modeling." },
+      { name: "Demand Planning & S&OP", detail: "Statistical baselines, demand consensus, and seasonality modeling." },
       { name: "Inventory Optimization", detail: "Safety stock calculation, EOQ, reorder points, and ABC-XYZ segmentation." },
-      { name: "Procurement & Sourcing", detail: "Kraljic matrix analysis, TCO modeling, supplier SLAs, and vendor onboarding." },
+      { name: "Procurement & Sourcing", detail: "Kraljic matrix analysis, TCO modeling, supplier SLAs, and vendor workflows." },
       { name: "Logistics & Distribution", detail: "Multi-echelon network design, freight analysis, lead-time variance control." },
       { name: "Operations Excellence", detail: "Lean methodology, Kaizen workshops, Value Stream Mapping, and bottleneck elimination." }
     ]
@@ -243,7 +243,7 @@ export const expertiseAreas: ExpertiseCategory[] = [
       { name: "Cost & Margin Analysis", detail: "Landed cost breakdown, working capital optimization, and direct vs. indirect spend." },
       { name: "Operations Strategy", detail: "Aligning supply network capacity with corporate growth goals and market realities." },
       { name: "MECE Problem Solving", detail: "Deconstructing ambiguous operational challenges into mutually exclusive structured trees." },
-      { name: "Cross-Functional Leadership", detail: "Connecting engineering technical teams with commercial sales and executive leadership." }
+      { name: "Cross-Functional Collaboration", detail: "Connecting technical engineering concepts with business decision-making." }
     ]
   }
 ];
@@ -262,11 +262,11 @@ export const experienceTimeline: ExperienceItem[] = [
       { value: "96.8%", label: "Feed Accuracy" }
     ],
     deliverables: [
-      "Orchestrated end-to-end partner onboarding workflows, scaling the supplier network from 15 to 50+ active digital vendors.",
-      "Designed and deployed operational Power BI dashboards tracking pipeline throughput, identifying stage bottlenecks, and enforcing SLAs.",
+      "Orchestrated partner onboarding workflows, scaling the supplier network from 15 to 50+ active digital vendors.",
+      "Designed and deployed operational Power BI dashboards tracking pipeline throughput, identifying stage bottlenecks, and monitoring SLAs.",
       "Engineered automated validation routines for supplier catalog data, cutting manual reconciliation time by 14 hours per week.",
-      "Led weekly cross-functional synchronization meetings with engineering and partner management to eliminate integration blockers.",
-      "Formulated operational standard operating procedures (SOPs) that decreased overall onboarding lead time by 30%."
+      "Led weekly cross-functional synchronization meetings with engineering and partner management to resolve integration blockers.",
+      "Documented standard operating procedures (SOPs) that decreased overall onboarding lead time by 30%."
     ],
     skills: ["Supply Chain Coordination", "Vendor Onboarding", "Power BI", "Excel", "Process Improvement", "Operational Analytics"]
   },
@@ -283,8 +283,8 @@ export const experienceTimeline: ExperienceItem[] = [
       { value: "-60%", label: "Defect Rate" }
     ],
     deliverables: [
-      "Conducted detailed time-and-motion studies and Value Stream Mapping across 5 manufacturing assembly workstations.",
-      "Re-balanced workstation allocations against line takt time, resolving severe bottlenecking at Station 3 to boost throughput by +18%.",
+      "Conducted time-and-motion studies and Value Stream Mapping across 5 manufacturing assembly workstations.",
+      "Re-balanced workstation allocations against line takt time, resolving bottlenecking at Station 3 to boost throughput by +18%.",
       "Audited factory warehouse stock locations and instituted visual 5S staging, cutting operator material search times by 40%.",
       "Analyzed component procurement lead times and supported vendor delivery tracking to safeguard assembly continuity.",
       "Documented preventive maintenance routines and quality inspection checkpoints to stabilize line performance."
@@ -301,11 +301,11 @@ export const educationTimeline: EducationItem[] = [
     location: "Rouen, France",
     period: "2026 — Present",
     focus: "Specialization in Supply Chain, Operations & Corporate Strategy",
-    description: "Rigorous European management curriculum emphasizing global supply chain logistics, operations strategy, financial management, advanced analytics, and strategic case resolution.",
+    description: "European management curriculum emphasizing global supply chain logistics, operations strategy, financial management, advanced analytics, and strategic case resolution.",
     highlights: [
       "Coursework: Supply Chain Analytics, Strategic Sourcing, Operations Management, Corporate Finance, Business Strategy",
-      "Actively training in structured case interview methodology, market sizing, and operational diagnostics",
-      "Bilingual study environment in France; member of business analytics & strategy clubs"
+      "Trained in structured case interview methodology, market sizing, and operational diagnostics",
+      "Bilingual study environment in France; active member of business analytics & strategy initiatives"
     ]
   },
   {
@@ -315,10 +315,10 @@ export const educationTimeline: EducationItem[] = [
     location: "Dehradun, India",
     period: "2021 — 2025",
     focus: "Quantitative Engineering, Production Systems & Optimization",
-    description: "Deep mathematical and technical training in physical systems design, thermodynamic cycles, production engineering, materials science, and numerical modeling.",
+    description: "Rigorous technical training in physical systems design, thermodynamic cycles, production engineering, materials science, and numerical modeling.",
     highlights: [
-      "Graduated with comprehensive coursework in Operations Research, Industrial Engineering, and CAD/CAM Modeling",
-      "Led technical project teams designing mechanical prototypes with tight tolerance and cost constraints",
+      "Coursework in Operations Research, Industrial Engineering, Quality Engineering, and CAD/CAM Modeling",
+      "Led technical student project teams designing mechanical prototypes under tight constraints",
       "Active participant in collegiate engineering symposiums and technical operations committees"
     ]
   }

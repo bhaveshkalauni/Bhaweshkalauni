@@ -50,14 +50,14 @@ export default function Projects() {
           <div>
             <div className="flex items-center gap-2 text-xs font-mono font-bold tracking-widest text-[#111214] uppercase mb-2">
               <span className="w-2.5 h-2.5 bg-[#20A0B5] inline-block"></span>
-              <span>01 // EVIDENCE &amp; CASE STUDIES</span>
+              <span>01 // PROJECTS &amp; CASE STUDIES</span>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight uppercase text-[#111214]">
               Selected Work
             </h2>
           </div>
           <p className="mt-4 md:mt-0 text-sm font-mono text-[#3F454A] max-w-md">
-            Quantitative inventory modeling, operations re-engineering, and strategic procurement. Click any project to open full analysis.
+            A collection of quantitative models, operations analyses, and strategic sourcing case studies documenting my analytical approaches.
           </p>
         </div>
 
@@ -120,7 +120,7 @@ export default function Projects() {
                   </div>
                   
                   <div className="inline-flex items-center gap-1 text-xs font-mono font-bold uppercase text-[#111214] group-hover:translate-x-1 transition-transform">
-                    <span>INSPECT METHODOLOGY</span>
+                    <span>VIEW CASE STUDY</span>
                     <ArrowUpRight className="w-4 h-4" />
                   </div>
                 </div>

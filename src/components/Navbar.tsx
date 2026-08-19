@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Menu, X, ArrowUpRight } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { personalInfo } from "../data";
 
 interface NavLink {
@@ -94,15 +94,15 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* Desktop Action: Karol Binkowski signature CTA button */}
+        {/* Desktop Action: Personal portfolio CTA button */}
         <div className="hidden md:flex items-center space-x-4">
           <a
-            href={`https://mail.google.com/mail/?view=cm&fs=1&to=${personalInfo.contact.email}&su=Supply%20Chain%20%26%20Operations%20Inquiry`}
+            href={`https://mail.google.com/mail/?view=cm&fs=1&to=${personalInfo.contact.email}&su=Hello%20Bhawesh%20-%20Portfolio%20Inquiry`}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#20A0B5] text-[#111214] font-mono text-xs font-bold tracking-wider uppercase border-2 border-[#111214] shadow-[3px_3px_0px_#111214] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[1px_1px_0px_#111214] transition-all cursor-pointer"
           >
-            <span>BOOK A CALL →</span>
+            <span>GET IN TOUCH →</span>
           </a>
         </div>
 
@@ -137,12 +137,12 @@ export default function Navbar() {
 
           <div className="pt-2">
             <a
-              href={`https://mail.google.com/mail/?view=cm&fs=1&to=${personalInfo.contact.email}&su=Supply%20Chain%20%26%20Operations%20Inquiry`}
+              href={`https://mail.google.com/mail/?view=cm&fs=1&to=${personalInfo.contact.email}&su=Hello%20Bhawesh%20-%20Portfolio%20Inquiry`}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 text-xs font-mono font-bold tracking-wider uppercase bg-[#20A0B5] text-[#111214] border-2 border-[#111214] shadow-[3px_3px_0px_#111214]"
             >
-              <span>BOOK A CALL / OPEN GMAIL →</span>
+              <span>GET IN TOUCH / OPEN GMAIL →</span>
             </a>
           </div>
         </div>
