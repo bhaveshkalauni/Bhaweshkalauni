@@ -4,8 +4,9 @@ export interface EducationItem {
   institution: string;
   location: string;
   period: string;
-  description?: string;
-  logoText: string;
+  focus: string;
+  description: string;
+  highlights: string[];
 }
 
 export interface ExperienceItem {
@@ -14,36 +15,47 @@ export interface ExperienceItem {
   company: string;
   location: string;
   period: string;
-  description: string[];
+  type: string;
+  impactMetrics?: { value: string; label: string }[];
+  deliverables: string[];
   skills: string[];
-  logoText: string;
 }
 
-export interface SkillCategory {
-  title: string;
-  skills: { name: string; level?: string }[];
-}
-
-export interface ProjectItem {
+export interface ExpertiseCategory {
   id: string;
+  category: string;
+  subtitle: string;
+  items: {
+    name: string;
+    detail?: string;
+  }[];
+}
+
+export interface CaseStudyItem {
+  id: string;
+  index: string; // "01", "02", etc.
   title: string;
   category: string;
-  description: string;
-  highlights: string[];
-  tech: string[];
-  link?: string;
+  timeline: string;
+  role: string;
+  heroMetric: { value: string; label: string };
+  summary: string;
+  problem: string;
+  objective: string;
+  context: string;
+  approach: string[];
+  analysis: string[];
+  keyFindings: string[];
+  recommendations: string[];
+  toolsUsed: string[];
+  tags: string[];
 }
 
-export interface AchievementItem {
-  id: string;
-  value: string;
-  label: string;
-  description: string;
-}
-
-export interface CareerInterestItem {
-  id: string;
+export interface BackgroundPhase {
+  phase: string;
   title: string;
-  description: string;
-  iconName: string;
+  institution: string;
+  period: string;
+  summary: string;
+  takeaways: string[];
 }

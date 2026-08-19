@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Sun, Moon } from "lucide-react";
 
 export default function ThemeToggle() {
@@ -8,9 +8,9 @@ export default function ThemeToggle() {
       if (savedTheme) {
         return savedTheme === "dark";
       }
-      return false; // Light mode default as requested
+      return true; // Default to sleek dark mode for strong editorial visual impact
     }
-    return false;
+    return true;
   });
 
   useEffect(() => {
@@ -28,14 +28,21 @@ export default function ThemeToggle() {
     <button
       id="theme-toggle-btn"
       onClick={() => setDarkMode(!darkMode)}
-      className="p-2.5 rounded-full transition-all duration-300 bg-navy-100 hover:bg-navy-200 text-navy-800 dark:bg-navy-800 dark:hover:bg-navy-700 dark:text-navy-100 border border-transparent dark:border-navy-700 focus:outline-none focus:ring-2 focus:ring-brand-500 cursor-pointer"
-      aria-label="Toggle dark mode"
+      className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-mono tracking-wider uppercase border border-neutral-300 dark:border-neutral-800 rounded text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:border-neutral-400 dark:hover:border-neutral-600 transition-colors cursor-pointer"
+      aria-label="Toggle theme"
     >
       {darkMode ? (
-        <Sun className="w-4 h-4 transition-transform duration-500 hover:rotate-45" />
+        <>
+          <Sun className="w-3 h-3 text-neutral-400" />
+          <span>LIGHT</span>
+        </>
       ) : (
-        <Moon className="w-4 h-4 transition-transform duration-500 hover:-rotate-12" />
+        <>
+          <Moon className="w-3 h-3 text-neutral-600" />
+          <span>DARK</span>
+        </>
       )}
     </button>
   );
 }
+
