@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ArrowUpRight, X, ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowUpRight, X, ArrowLeft, ArrowRight, CheckCircle2, Clock } from "lucide-react";
 import { caseStudies } from "../data";
 import { CaseStudyItem } from "../types";
 
@@ -57,78 +57,101 @@ export default function Projects() {
             </h2>
           </div>
           <p className="mt-4 md:mt-0 text-sm font-mono text-[#3F454A] max-w-md">
-            A collection of quantitative models, operations analyses, and strategic sourcing case studies documenting my analytical approaches.
+            Quantitative modeling, operations research, and supply chain analytics documentation.
           </p>
         </div>
 
-        {/* Case Studies Index Cards */}
-        <div className="space-y-6">
-          {caseStudies.map((study) => (
-            <div
-              key={study.id}
-              onClick={() => setSelectedCase(study)}
-              className="group p-6 sm:p-8 bg-[#F7F7F6] border-2 border-[#111214] shadow-[4px_4px_0px_#111214] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_#111214] transition-all cursor-pointer"
-            >
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-start">
-                
-                {/* Index & Category */}
-                <div className="lg:col-span-3 space-y-1">
-                  <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#111214]">
-                    <span className="bg-[#20A0B5] px-1.5 py-0.5 text-[#111214]">
-                      {study.index}
-                    </span>
-                    <span className="text-[#3F454A] uppercase tracking-wider text-[11px]">
-                      {study.category}
-                    </span>
-                  </div>
-                  <div className="text-xs font-mono text-[#3F454A]">
-                    {study.timeline}
-                  </div>
-                </div>
-
-                {/* Title & Core Summary */}
-                <div className="lg:col-span-6 space-y-3">
-                  <h3 className="text-xl sm:text-2xl font-black uppercase text-[#111214] group-hover:text-[#20A0B5] transition-colors leading-tight">
-                    {study.title}
-                  </h3>
-                  <p className="text-sm text-[#3F454A] leading-relaxed">
-                    {study.summary}
-                  </p>
+        {/* Case Studies Display or Clean In-Progress State */}
+        {caseStudies.length > 0 ? (
+          <div className="space-y-6">
+            {caseStudies.map((study) => (
+              <div
+                key={study.id}
+                onClick={() => setSelectedCase(study)}
+                className="group p-6 sm:p-8 bg-[#F7F7F6] border-2 border-[#111214] shadow-[4px_4px_0px_#111214] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_#111214] transition-all cursor-pointer"
+              >
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-start">
                   
-                  {/* Tools snippet */}
-                  <div className="flex flex-wrap gap-2 pt-1">
-                    {study.toolsUsed.map((tool) => (
-                      <span
-                        key={tool}
-                        className="text-[10px] font-mono font-bold uppercase px-2 py-0.5 border border-[#111214] bg-[#F3F2F0] text-[#111214]"
-                      >
-                        {tool}
+                  {/* Index & Category */}
+                  <div className="lg:col-span-3 space-y-1">
+                    <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#111214]">
+                      <span className="bg-[#20A0B5] px-1.5 py-0.5 text-[#111214]">
+                        {study.index}
                       </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Primary Metric & Action */}
-                <div className="lg:col-span-3 flex lg:flex-col lg:items-end justify-between items-center gap-3 pt-2 lg:pt-0">
-                  <div className="border-2 border-[#111214] bg-[#20A0B5] px-3 py-1.5 shadow-[2px_2px_0px_#111214] text-right">
-                    <div className="font-mono font-black text-base sm:text-lg text-[#111214] leading-none">
-                      {study.heroMetric.value}
+                      <span className="text-[#3F454A] uppercase tracking-wider text-[11px]">
+                        {study.category}
+                      </span>
                     </div>
-                    <div className="font-mono text-[10px] font-bold uppercase text-[#111214]">
-                      {study.heroMetric.label}
+                    <div className="text-xs font-mono text-[#3F454A]">
+                      {study.timeline}
                     </div>
                   </div>
-                  
-                  <div className="inline-flex items-center gap-1 text-xs font-mono font-bold uppercase text-[#111214] group-hover:translate-x-1 transition-transform">
-                    <span>VIEW CASE STUDY</span>
-                    <ArrowUpRight className="w-4 h-4" />
-                  </div>
-                </div>
 
+                  {/* Title & Core Summary */}
+                  <div className="lg:col-span-6 space-y-3">
+                    <h3 className="text-xl sm:text-2xl font-black uppercase text-[#111214] group-hover:text-[#20A0B5] transition-colors leading-tight">
+                      {study.title}
+                    </h3>
+                    <p className="text-sm text-[#3F454A] leading-relaxed">
+                      {study.summary}
+                    </p>
+                    
+                    {/* Tools snippet */}
+                    <div className="flex flex-wrap gap-2 pt-1">
+                      {study.toolsUsed.map((tool) => (
+                        <span
+                          key={tool}
+                          className="text-[10px] font-mono font-bold uppercase px-2 py-0.5 border border-[#111214] bg-[#F3F2F0] text-[#111214]"
+                        >
+                          {tool}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Primary Metric & Action */}
+                  <div className="lg:col-span-3 flex lg:flex-col lg:items-end justify-between items-center gap-3 pt-2 lg:pt-0">
+                    <div className="border-2 border-[#111214] bg-[#20A0B5] px-3 py-1.5 shadow-[2px_2px_0px_#111214] text-right">
+                      <div className="font-mono font-black text-base sm:text-lg text-[#111214] leading-none">
+                        {study.heroMetric.value}
+                      </div>
+                      <div className="font-mono text-[10px] font-bold uppercase text-[#111214]">
+                        {study.heroMetric.label}
+                      </div>
+                    </div>
+                    
+                    <div className="inline-flex items-center gap-1 text-xs font-mono font-bold uppercase text-[#111214] group-hover:translate-x-1 transition-transform">
+                      <span>VIEW CASE STUDY</span>
+                      <ArrowUpRight className="w-4 h-4" />
+                    </div>
+                  </div>
+
+                </div>
               </div>
+            ))}
+          </div>
+        ) : (
+          <div className="p-8 sm:p-12 bg-[#F7F7F6] border-2 border-[#111214] shadow-[5px_5px_0px_#111214] text-center space-y-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#20A0B5] text-[#111214] border border-[#111214] text-xs font-mono font-bold uppercase tracking-widest">
+              <Clock className="w-3.5 h-3.5" />
+              <span>STATUS // IN PROGRESS</span>
             </div>
-          ))}
-        </div>
+            
+            <h3 className="text-xl sm:text-2xl font-black uppercase text-[#111214] tracking-tight max-w-lg mx-auto">
+              New Projects &amp; Case Studies in Preparation
+            </h3>
+            
+            <p className="text-sm text-[#3F454A] max-w-xl mx-auto font-normal leading-relaxed">
+              Currently compiling and documenting upcoming work across supply chain analytics, operations modeling, and process optimization. In the meantime, explore my skills, background, and track record below.
+            </p>
+
+            <div className="pt-2 flex flex-wrap justify-center gap-2 text-[11px] font-mono text-[#3F454A]">
+              <span className="px-2.5 py-1 border border-[#111214] bg-[#F3F2F0] font-bold text-[#111214]">SUPPLY CHAIN MODELING</span>
+              <span className="px-2.5 py-1 border border-[#111214] bg-[#F3F2F0] font-bold text-[#111214]">OPERATIONS ANALYTICS</span>
+              <span className="px-2.5 py-1 border border-[#111214] bg-[#F3F2F0] font-bold text-[#111214]">LEAN &amp; LOGISTICS</span>
+            </div>
+          </div>
+        )}
 
       </div>
 
