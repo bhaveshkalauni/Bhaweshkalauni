@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { ArrowUpRight, X, ArrowLeft, ArrowRight, CheckCircle2, Clock } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { caseStudies } from "../data";
 import { CaseStudyItem } from "../types";
 
 export default function Projects() {
+  const navigate = useNavigate();
   const [selectedCase, setSelectedCase] = useState<CaseStudyItem | null>(null);
 
   // Keyboard navigation & modal body lock
@@ -67,7 +69,13 @@ export default function Projects() {
             {caseStudies.map((study) => (
               <div
                 key={study.id}
-                onClick={() => setSelectedCase(study)}
+                onClick={() => {
+                  if (study.livePath) {
+                    navigate(study.livePath);
+                    return;
+                  }
+                  setSelectedCase(study);
+                }}
                 className="group p-6 sm:p-8 bg-[#F7F7F6] border-2 border-[#111214] shadow-[4px_4px_0px_#111214] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_#111214] transition-all cursor-pointer"
               >
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-start">
@@ -121,7 +129,7 @@ export default function Projects() {
                     </div>
                     
                     <div className="inline-flex items-center gap-1 text-xs font-mono font-bold uppercase text-[#111214] group-hover:translate-x-1 transition-transform">
-                      <span>VIEW CASE STUDY</span>
+                      <span>{study.livePath ? "OPEN LIVE DASHBOARD" : "VIEW CASE STUDY"}</span>
                       <ArrowUpRight className="w-4 h-4" />
                     </div>
                   </div>

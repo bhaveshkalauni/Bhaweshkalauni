@@ -49,6 +49,7 @@ export interface CaseStudyItem {
   recommendations: string[];
   toolsUsed: string[];
   tags: string[];
+  livePath?: string;
 }
 
 export interface BackgroundPhase {

@@ -63,8 +63,47 @@ export const backgroundPhases: BackgroundPhase[] = [
   }
 ];
 
-// Work / Projects data (currently empty as requested)
-export const caseStudies: CaseStudyItem[] = [];
+export const caseStudies: CaseStudyItem[] = [
+  {
+    id: "cs-tradeflow",
+    index: "01",
+    title: "France–India Import Forecast",
+    category: "Trade Analytics",
+    timeline: "2026 · Live dashboard",
+    role: "Design, data pipeline, forecast logic",
+    heroMetric: { value: "15Y", label: "Live Comext history" },
+    summary:
+      "Planner dashboard that watches France–India apparel and textile customs flows, flags sourcing exceptions, and projects the next three months from official Eurostat Comext data.",
+    problem:
+      "Inbound apparel and textile flows from India move before retail demand is visible. Planners need a way to see value, volume, and volatility shifts early enough to change sourcing and inventory decisions.",
+    objective:
+      "Turn monthly extra-EU customs data into an operations view: rolling KPIs, a seasonal-naive forecast, ranked alerts, and HS2/HS4 exception tables — using only free public data.",
+    context:
+      "France–India extra-EU trade published by Eurostat Comext (compiled from French Douanes declarations). Categories cover knitted and woven apparel, yarn, home textiles, footwear, and leather accessories.",
+    approach: [
+      "Query Eurostat Comext DS-045409 for reporter FR, partner IN, monthly value and net weight",
+      "Keep a 15-year history and compute a three-month seasonal-naive forecast with a widening confidence band",
+      "Rank planner alerts from forecast variance, unit-value change, and volatility — not hardcoded copy",
+    ],
+    analysis: [
+      "Import value is a rolling 12-month total versus the prior 12 months",
+      "Variance is judged against the same month last year, grown by the recent trend, not versus last month",
+      "HS2 versus HS4 toggles real product series rather than labels only",
+    ],
+    keyFindings: [
+      "Live Comext data through the latest official month (currently mid-2026, with a typical 6–8 week lag)",
+      "Leather accessories (HS 42) is a working category, not an empty demo filter",
+      "Export downloads the visible monthly series as CSV",
+    ],
+    recommendations: [
+      "Use High-severity alerts to review supplier lead time or landed-cost assumptions in the next planning cycle",
+      "Treat the three-month band as a planning envelope, not a point forecast",
+    ],
+    toolsUsed: ["Eurostat Comext", "React", "Recharts", "Seasonal-naive forecast"],
+    tags: ["Supply Chain Analytics", "Trade Flows", "Forecasting"],
+    livePath: "/projects/france-india-trade-forecast",
+  },
+];
 
 export const expertiseAreas: ExpertiseCategory[] = [
   {
