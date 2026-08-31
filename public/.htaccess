@@ -1,0 +1,10 @@
+RewriteEngine On
+RewriteBase /
+
+# Existing files (JS, CSS, images) are served as-is.
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# React Router paths fall back to index.html.
+RewriteRule ^ index.html [L]
