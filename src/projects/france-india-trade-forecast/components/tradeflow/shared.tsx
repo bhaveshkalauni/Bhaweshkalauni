@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { cn } from "@/lib/utils";
+import { cn } from "@/src/projects/france-india-trade-forecast/lib/utils";
 
 export function Panel({
   title,

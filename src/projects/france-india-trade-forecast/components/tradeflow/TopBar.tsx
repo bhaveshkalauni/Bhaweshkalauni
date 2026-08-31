@@ -1,5 +1,5 @@
 import { ArrowLeft } from "lucide-react";
-import { Link } from "react-router-dom";
+import type { ReactNode } from "react";
 
 export type DataStatus = "live" | "stale" | "loading" | "error";
 
@@ -10,7 +10,13 @@ const BADGE: Record<DataStatus, { label: string; dot: string }> = {
   error: { label: "Comext unavailable", dot: "bg-saffron" },
 };
 
-export function TopBar({ status = "live" }: { status?: DataStatus }) {
+export function TopBar({
+  status = "live",
+  backTo,
+}: {
+  status?: DataStatus;
+  backTo?: ReactNode;
+}) {
   const badge = BADGE[status];
   return (
     <header className="sticky top-0 z-30 border-b border-hairline bg-panel/95 backdrop-blur">
@@ -28,13 +34,15 @@ export function TopBar({ status = "live" }: { status?: DataStatus }) {
             <span className={`size-1.5 rounded-full ${badge.dot}`} />
             {badge.label}
           </span>
-          <Link
-            to="/"
-            className="inline-flex items-center gap-1.5 text-xs font-medium text-navy-soft transition-colors hover:text-navy"
-          >
-            <ArrowLeft className="size-3.5" />
-            Back to Portfolio
-          </Link>
+          {backTo ?? (
+            <a
+              href="/#projects"
+              className="inline-flex items-center gap-1.5 text-xs font-medium text-navy-soft transition-colors hover:text-navy"
+            >
+              <ArrowLeft className="size-3.5" />
+              Back to Portfolio
+            </a>
+          )}
         </div>
       </div>
     </header>

@@ -63,45 +63,65 @@ export const backgroundPhases: BackgroundPhase[] = [
   }
 ];
 
+// Work / Projects data
 export const caseStudies: CaseStudyItem[] = [
   {
-    id: "cs-tradeflow",
+    id: "france-india-trade-forecast",
     index: "01",
     title: "France–India Import Forecast",
-    category: "Trade Analytics",
-    timeline: "2026 · Live dashboard",
-    role: "Design, data pipeline, forecast logic",
-    heroMetric: { value: "15Y", label: "Live Comext history" },
+    category: "Supply Chain Analytics",
+    timeline: "Aug 2026",
+    role: "Solo · Portfolio prototype",
+    heroMetric: {
+      value: "€992m",
+      label: "12-month FR apparel/textile imports from India",
+    },
     summary:
-      "Planner dashboard that watches France–India apparel and textile customs flows, flags sourcing exceptions, and projects the next three months from official Eurostat Comext data.",
+      "Live TradeFlow dashboard forecasting France–India apparel and textile customs flows with seasonal projections, volatility risk, and planner alerts from Eurostat Comext.",
     problem:
-      "Inbound apparel and textile flows from India move before retail demand is visible. Planners need a way to see value, volume, and volatility shifts early enough to change sourcing and inventory decisions.",
+      "Inbound France–India apparel and textile swings are hard to see early, so sourcing and inventory issues surface only after customs flows have already moved.",
     objective:
-      "Turn monthly extra-EU customs data into an operations view: rolling KPIs, a seasonal-naive forecast, ranked alerts, and HS2/HS4 exception tables — using only free public data.",
+      "Surface live customs value and volume, a 3-month seasonal forecast, and ranked exceptions so planners can act before disruptions hit operations.",
     context:
-      "France–India extra-EU trade published by Eurostat Comext (compiled from French Douanes declarations). Categories cover knitted and woven apparel, yarn, home textiles, footwear, and leather accessories.",
+      "First supply-chain portfolio project, embedded at /projects/france-india-trade-forecast. Uses free Eurostat Comext (French Douanes via EU publication), HS apparel/textiles coverage, no login or paid APIs.",
     approach: [
-      "Query Eurostat Comext DS-045409 for reporter FR, partner IN, monthly value and net weight",
-      "Keep a 15-year history and compute a three-month seasonal-naive forecast with a widening confidence band",
-      "Rank planner alerts from forecast variance, unit-value change, and volatility — not hardcoded copy",
+      "Built TradeFlow UI with KPIs, main chart, alerts, exception table, and methodology.",
+      "Wired live Eurostat Comext extracts for France–India HS2/HS4 value and quantity.",
+      "Cached the Comext extract (~24h) with fail-over to stale cache — never invent demo numbers.",
+      "Applied seasonal-naive + trend 3-month forecast with a widening confidence band.",
+      "Derived category variance, unit-value YoY, and volatility into ranked planner alerts.",
+      "Added CSV insight-report export of the visible series and KPIs.",
     ],
     analysis: [
-      "Import value is a rolling 12-month total versus the prior 12 months",
-      "Variance is judged against the same month last year, grown by the recent trend, not versus last month",
-      "HS2 versus HS4 toggles real product series rather than labels only",
+      "Separate volume vs unit-value drivers to distinguish shipment shortfalls from landed-cost pressure.",
+      "Judge months against a seasonal baseline + trend, not the prior month alone.",
+      "Annualised volatility flags lumpy, hard-to-plan HS lines.",
+      "HS2 vs HS4 views support chapter overview and line-level detail.",
+      "Dual flow support: France imports from India (default) and France exports to India.",
     ],
     keyFindings: [
-      "Live Comext data through the latest official month (currently mid-2026, with a typical 6–8 week lag)",
-      "Leather accessories (HS 42) is a working category, not an empty demo filter",
-      "Export downloads the visible monthly series as CSV",
+      "Default apparel/textiles view: ~€992m rolling 12-month import value and ~82.8k t volume (as of Jun 2026 Comext).",
+      "Next-quarter seasonal forecast around €233m for Jul–Sep 2026 on the default view.",
+      "Leather (HS 42) is a live series in Comext — not an empty placeholder.",
+      "Alerts are computed from live variance, unit-value, and volatility — not hardcoded copy.",
     ],
     recommendations: [
-      "Use High-severity alerts to review supplier lead time or landed-cost assumptions in the next planning cycle",
-      "Treat the three-month band as a planning envelope, not a point forecast",
+      "Below seasonal volume band: confirm supplier shipments; add a short safety buffer.",
+      "Rising unit value: reprice landed cost; check freight, fibre, and FX.",
+      "Peak arriving early: shift receiving capacity and pre-book dock slots.",
+      "High volatility / lumpy lines: consolidate shipments to cut noise and unit freight.",
+      "Inside corridor: monitor and keep standard replenishment cadence.",
     ],
-    toolsUsed: ["Eurostat Comext", "React", "Recharts", "Seasonal-naive forecast"],
-    tags: ["Supply Chain Analytics", "Trade Flows", "Forecasting"],
-    livePath: "/projects/france-india-trade-forecast",
+    toolsUsed: ["React", "TypeScript", "TanStack Query", "Eurostat Comext", "Recharts", "Tailwind CSS"],
+    tags: [
+      "France–India",
+      "Trade forecast",
+      "Eurostat",
+      "Apparel",
+      "HS codes",
+      "Supply chain analytics",
+    ],
+    href: "/projects/france-india-trade-forecast",
   },
 ];
 

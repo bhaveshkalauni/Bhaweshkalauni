@@ -1,6 +1,6 @@
 import { Panel, EmptyState } from "./shared";
-import { cn } from "@/lib/utils";
-import { formatEur, formatPct, type CategoryRow, type Dataset } from "@/lib/trade-data";
+import { cn } from "@/src/projects/france-india-trade-forecast/lib/utils";
+import { formatEur, formatPct, type CategoryRow, type Dataset } from "@/src/projects/france-india-trade-forecast/lib/trade-data";
 
 function VolTag({ row }: { row: CategoryRow }) {
   return (

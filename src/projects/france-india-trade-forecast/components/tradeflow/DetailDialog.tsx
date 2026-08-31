@@ -13,10 +13,10 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
+} from "@/src/projects/france-india-trade-forecast/components/ui/dialog";
 import { TooltipShell } from "./ChartTooltip";
 import { Delta } from "./shared";
-import { formatEur, formatPct, formatTonnes, type CategoryRow } from "@/lib/trade-data";
+import { formatEur, formatPct, formatTonnes, type CategoryRow } from "@/src/projects/france-india-trade-forecast/lib/trade-data";
 
 export function DetailDialog({
   row,

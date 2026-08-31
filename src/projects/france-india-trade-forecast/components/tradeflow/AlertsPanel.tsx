@@ -1,6 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import { Panel, SeverityTag, EmptyState } from "./shared";
-import type { Alert } from "@/lib/trade-data";
+import type { Alert } from "@/src/projects/france-india-trade-forecast/lib/trade-data";
 
 export function AlertsPanel({
   alerts,

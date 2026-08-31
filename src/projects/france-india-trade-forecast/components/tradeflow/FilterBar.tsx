@@ -1,15 +1,15 @@
 import type { ReactNode } from "react";
 import { Download } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/src/projects/france-india-trade-forecast/components/ui/button";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { DATE_RANGES, FLOWS, PRODUCT_GROUPS, type Filters, type HsLevel } from "@/lib/trade-data";
-import { cn } from "@/lib/utils";
+} from "@/src/projects/france-india-trade-forecast/components/ui/select";
+import { DATE_RANGES, FLOWS, PRODUCT_GROUPS, type Filters, type HsLevel } from "@/src/projects/france-india-trade-forecast/lib/trade-data";
+import { cn } from "@/src/projects/france-india-trade-forecast/lib/utils";
 
 function Field({
   label,
@@ -44,10 +44,10 @@ export function FilterBar({
       <div className="grid gap-4 sm:grid-cols-2 lg:flex lg:flex-nowrap lg:items-end lg:gap-4">
         <Field label="Flow" className="lg:w-[13.5rem] lg:shrink-0">
           <Select value={filters.flow} onValueChange={(v) => onChange({ flow: v as Filters["flow"] })}>
-            <SelectTrigger className="bg-background text-sm">
+            <SelectTrigger className="border-hairline bg-background text-sm shadow-none">
               <SelectValue />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="border-hairline bg-panel">
               {FLOWS.map((f) => (
                 <SelectItem key={f.id} value={f.id}>
                   {f.label}
@@ -59,10 +59,10 @@ export function FilterBar({
 
         <Field label="Product category" className="lg:w-[13rem] lg:shrink-0">
           <Select value={filters.group} onValueChange={(v) => onChange({ group: v })}>
-            <SelectTrigger className="bg-background text-sm">
+            <SelectTrigger className="border-hairline bg-background text-sm shadow-none">
               <SelectValue />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="border-hairline bg-panel">
               {PRODUCT_GROUPS.map((g) => (
                 <SelectItem key={g.id} value={g.id}>
                   {g.label}
@@ -95,10 +95,10 @@ export function FilterBar({
 
         <Field label="Date range" className="lg:w-[12rem] lg:shrink-0">
           <Select value={filters.range} onValueChange={(v) => onChange({ range: v })}>
-            <SelectTrigger className="bg-background text-sm">
+            <SelectTrigger className="border-hairline bg-background text-sm shadow-none">
               <SelectValue />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="border-hairline bg-panel">
               {DATE_RANGES.map((r) => (
                 <SelectItem key={r.id} value={r.id}>
                   {r.label}
@@ -108,7 +108,11 @@ export function FilterBar({
           </Select>
         </Field>
 
-        <Button variant="default" onClick={onExport} className="h-9 gap-2 lg:ml-auto lg:shrink-0 bg-navy text-panel hover:bg-navy-soft">
+        <Button
+          variant="default"
+          onClick={onExport}
+          className="h-9 gap-2 rounded-md border border-navy bg-navy text-panel shadow-none hover:bg-navy-soft hover:text-panel lg:ml-auto lg:shrink-0"
+        >
           <Download className="size-3.5" />
           Export insight
         </Button>

@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "./projects/france-india-trade-forecast/tradeflow.css";
 
 @theme {
   --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -6,12 +8,7 @@
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
   --color-canvas: #F3F2F0;
-  --color-primary: #111214;
-  --color-accent: #20A0B5;
-  --color-secondary: #3F454A;
   --color-status: #1E7A62;
-  --color-card: #F7F7F6;
-  --color-border: #111214;
 }
 
 @layer base {

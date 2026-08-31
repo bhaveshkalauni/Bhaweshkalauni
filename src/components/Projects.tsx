@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { ArrowUpRight, X, ArrowLeft, ArrowRight, CheckCircle2, Clock } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { ArrowUpRight, X, ArrowLeft, ArrowRight, CheckCircle2, Clock } from "lucide-react";
 import { caseStudies } from "../data";
 import { CaseStudyItem } from "../types";
 
@@ -8,7 +8,6 @@ export default function Projects() {
   const navigate = useNavigate();
   const [selectedCase, setSelectedCase] = useState<CaseStudyItem | null>(null);
 
-  // Keyboard navigation & modal body lock
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -29,6 +28,14 @@ export default function Projects() {
     };
   }, [selectedCase]);
 
+  const openCase = (study: CaseStudyItem) => {
+    if (study.href) {
+      navigate(study.href);
+      return;
+    }
+    setSelectedCase(study);
+  };
+
   const handleNextCase = () => {
     if (!selectedCase) return;
     const currentIndex = caseStudies.findIndex((c) => c.id === selectedCase.id);
@@ -46,8 +53,6 @@ export default function Projects() {
   return (
     <section id="projects" className="py-20 md:py-28 border-b-2 border-[#111214] bg-[#F3F2F0]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-6 border-b-2 border-[#111214]">
           <div>
             <div className="flex items-center gap-2 text-xs font-mono font-bold tracking-widest text-[#111214] uppercase mb-2">
@@ -63,24 +68,15 @@ export default function Projects() {
           </p>
         </div>
 
-        {/* Case Studies Display or Clean In-Progress State */}
         {caseStudies.length > 0 ? (
           <div className="space-y-6">
             {caseStudies.map((study) => (
               <div
                 key={study.id}
-                onClick={() => {
-                  if (study.livePath) {
-                    navigate(study.livePath);
-                    return;
-                  }
-                  setSelectedCase(study);
-                }}
+                onClick={() => openCase(study)}
                 className="group p-6 sm:p-8 bg-[#F7F7F6] border-2 border-[#111214] shadow-[4px_4px_0px_#111214] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_#111214] transition-all cursor-pointer"
               >
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-start">
-                  
-                  {/* Index & Category */}
                   <div className="lg:col-span-3 space-y-1">
                     <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#111214]">
                       <span className="bg-[#20A0B5] px-1.5 py-0.5 text-[#111214]">
@@ -95,7 +91,6 @@ export default function Projects() {
                     </div>
                   </div>
 
-                  {/* Title & Core Summary */}
                   <div className="lg:col-span-6 space-y-3">
                     <h3 className="text-xl sm:text-2xl font-black uppercase text-[#111214] group-hover:text-[#20A0B5] transition-colors leading-tight">
                       {study.title}
@@ -103,8 +98,6 @@ export default function Projects() {
                     <p className="text-sm text-[#3F454A] leading-relaxed">
                       {study.summary}
                     </p>
-                    
-                    {/* Tools snippet */}
                     <div className="flex flex-wrap gap-2 pt-1">
                       {study.toolsUsed.map((tool) => (
                         <span
@@ -117,7 +110,6 @@ export default function Projects() {
                     </div>
                   </div>
 
-                  {/* Primary Metric & Action */}
                   <div className="lg:col-span-3 flex lg:flex-col lg:items-end justify-between items-center gap-3 pt-2 lg:pt-0">
                     <div className="border-2 border-[#111214] bg-[#20A0B5] px-3 py-1.5 shadow-[2px_2px_0px_#111214] text-right">
                       <div className="font-mono font-black text-base sm:text-lg text-[#111214] leading-none">
@@ -127,13 +119,11 @@ export default function Projects() {
                         {study.heroMetric.label}
                       </div>
                     </div>
-                    
                     <div className="inline-flex items-center gap-1 text-xs font-mono font-bold uppercase text-[#111214] group-hover:translate-x-1 transition-transform">
-                      <span>{study.livePath ? "OPEN LIVE DASHBOARD" : "VIEW CASE STUDY"}</span>
+                      <span>{study.href ? "OPEN LIVE PROJECT" : "VIEW CASE STUDY"}</span>
                       <ArrowUpRight className="w-4 h-4" />
                     </div>
                   </div>
-
                 </div>
               </div>
             ))}
@@ -144,15 +134,12 @@ export default function Projects() {
               <Clock className="w-3.5 h-3.5" />
               <span>STATUS // IN PROGRESS</span>
             </div>
-            
             <h3 className="text-xl sm:text-2xl font-black uppercase text-[#111214] tracking-tight max-w-lg mx-auto">
               New Projects &amp; Case Studies in Preparation
             </h3>
-            
             <p className="text-sm text-[#3F454A] max-w-xl mx-auto font-normal leading-relaxed">
               Currently compiling and documenting upcoming work across supply chain analytics, operations modeling, and process optimization. In the meantime, explore my skills, background, and track record below.
             </p>
-
             <div className="pt-2 flex flex-wrap justify-center gap-2 text-[11px] font-mono text-[#3F454A]">
               <span className="px-2.5 py-1 border border-[#111214] bg-[#F3F2F0] font-bold text-[#111214]">SUPPLY CHAIN MODELING</span>
               <span className="px-2.5 py-1 border border-[#111214] bg-[#F3F2F0] font-bold text-[#111214]">OPERATIONS ANALYTICS</span>
@@ -160,10 +147,8 @@ export default function Projects() {
             </div>
           </div>
         )}
-
       </div>
 
-      {/* Case Study Full Reader Modal */}
       {selectedCase && (
         <div
           className="fixed inset-0 z-50 overflow-y-auto bg-[#111214]/80 backdrop-blur-xs flex justify-center p-3 sm:p-6 md:p-10"
@@ -173,8 +158,6 @@ export default function Projects() {
             className="relative w-full max-w-5xl bg-[#F3F2F0] text-[#111214] border-3 border-[#111214] shadow-[8px_8px_0px_#111214] overflow-hidden my-auto max-h-[92vh] flex flex-col"
             onClick={(e) => e.stopPropagation()}
           >
-            
-            {/* Modal Top Bar */}
             <div className="flex items-center justify-between px-6 py-4 border-b-2 border-[#111214] bg-[#20A0B5] sticky top-0 z-10">
               <div className="flex items-center gap-3">
                 <span className="text-xs font-mono font-black text-[#111214] uppercase tracking-wider">
@@ -184,7 +167,6 @@ export default function Projects() {
                   {selectedCase.category}
                 </span>
               </div>
-
               <div className="flex items-center gap-2">
                 <button
                   onClick={handlePrevCase}
@@ -210,15 +192,11 @@ export default function Projects() {
               </div>
             </div>
 
-            {/* Modal Body */}
             <div className="p-6 sm:p-8 md:p-10 overflow-y-auto space-y-8 bg-[#F3F2F0]">
-              
-              {/* Header Title & Key Metric */}
               <div className="space-y-4 pb-6 border-b-2 border-[#111214]">
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight uppercase text-[#111214]">
                   {selectedCase.title}
                 </h2>
-                
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2">
                   <div className="p-3 bg-[#F7F7F6] border-2 border-[#111214]">
                     <div className="text-[10px] font-mono font-bold tracking-widest text-[#3F454A] uppercase">ROLE</div>
@@ -237,7 +215,6 @@ export default function Projects() {
                 </div>
               </div>
 
-              {/* Analytical Progression Steps */}
               <div className="p-4 bg-[#F7F7F6] border-2 border-[#111214]">
                 <div className="text-[11px] font-mono font-bold tracking-widest text-[#111214] uppercase mb-2">
                   STRUCTURED ANALYTICAL PROGRESSION
@@ -262,31 +239,24 @@ export default function Projects() {
                 </div>
               </div>
 
-              {/* Problem & Operational Context */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2 p-5 bg-[#F7F7F6] border-2 border-[#111214]">
                   <div className="text-xs font-mono font-bold text-[#111214] uppercase">
                     01 // THE PROBLEM &amp; OBJECTIVE
                   </div>
-                  <p className="text-sm text-[#3F454A] leading-relaxed">
-                    {selectedCase.problem}
-                  </p>
+                  <p className="text-sm text-[#3F454A] leading-relaxed">{selectedCase.problem}</p>
                   <p className="text-xs text-[#111214] font-mono font-semibold pt-1 border-t border-[#111214]/20">
                     Target: {selectedCase.objective}
                   </p>
                 </div>
-
                 <div className="space-y-2 p-5 bg-[#F7F7F6] border-2 border-[#111214]">
                   <div className="text-xs font-mono font-bold text-[#111214] uppercase">
                     02 // OPERATIONAL CONTEXT
                   </div>
-                  <p className="text-sm text-[#3F454A] leading-relaxed">
-                    {selectedCase.context}
-                  </p>
+                  <p className="text-sm text-[#3F454A] leading-relaxed">{selectedCase.context}</p>
                 </div>
               </div>
 
-              {/* Approach & Methodology */}
               <div className="space-y-4 p-6 bg-[#F7F7F6] border-2 border-[#111214]">
                 <div className="text-xs font-mono font-bold text-[#111214] uppercase">
                   03 // ANALYTICAL APPROACH &amp; ALGORITHMS
@@ -303,7 +273,6 @@ export default function Projects() {
                 </div>
               </div>
 
-              {/* Quantitative Analysis Box */}
               <div className="p-6 bg-[#111214] text-[#F3F2F0] border-2 border-[#111214] space-y-3 font-mono">
                 <div className="text-xs font-bold tracking-widest text-[#20A0B5] uppercase">
                   04 // QUANTITATIVE ANALYSIS &amp; EMPIRICAL INSIGHTS
@@ -318,7 +287,6 @@ export default function Projects() {
                 </div>
               </div>
 
-              {/* Key Findings & Recommendations */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-3 p-5 bg-[#F7F7F6] border-2 border-[#111214]">
                   <div className="text-xs font-mono font-bold text-[#111214] uppercase">
@@ -333,7 +301,6 @@ export default function Projects() {
                     ))}
                   </ul>
                 </div>
-
                 <div className="space-y-3 p-5 bg-[#F7F7F6] border-2 border-[#111214]">
                   <div className="text-xs font-mono font-bold text-[#111214] uppercase">
                     06 // OPERATIONAL RECOMMENDATIONS
@@ -349,12 +316,9 @@ export default function Projects() {
                 </div>
               </div>
 
-              {/* Tools & Stack Footer */}
               <div className="pt-4 border-t-2 border-[#111214] flex flex-wrap items-center justify-between gap-4">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="text-xs font-mono font-bold text-[#111214] uppercase mr-2">
-                    STACK:
-                  </span>
+                  <span className="text-xs font-mono font-bold text-[#111214] uppercase mr-2">STACK:</span>
                   {selectedCase.toolsUsed.map((tool) => (
                     <span
                       key={tool}
@@ -364,7 +328,6 @@ export default function Projects() {
                     </span>
                   ))}
                 </div>
-
                 <button
                   onClick={() => setSelectedCase(null)}
                   className="px-5 py-2.5 text-xs font-mono font-bold uppercase bg-[#111214] text-[#F3F2F0] hover:bg-[#3F454A] border-2 border-[#111214] cursor-pointer"
@@ -372,13 +335,10 @@ export default function Projects() {
                   CLOSE CASE STUDY [ESC]
                 </button>
               </div>
-
             </div>
-
           </div>
         </div>
       )}
-
     </section>
   );
 }

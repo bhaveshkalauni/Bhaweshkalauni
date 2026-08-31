@@ -49,7 +49,8 @@ export interface CaseStudyItem {
   recommendations: string[];
   toolsUsed: string[];
   tags: string[];
-  livePath?: string;
+  /** When set, the project card opens this in-app route (live embedded project). */
+  href?: string;
 }
 
 export interface BackgroundPhase {

@@ -12,7 +12,7 @@ import {
 } from "recharts";
 import { Panel, EmptyState } from "./shared";
 import { TooltipShell } from "./ChartTooltip";
-import { formatEur, type Dataset } from "@/lib/trade-data";
+import { formatEur, type Dataset } from "@/src/projects/france-india-trade-forecast/lib/trade-data";
 
 const axis = { fontSize: 11, fill: "var(--slate-muted)" };
 

@@ -1,5 +1,5 @@
 import { Delta } from "./shared";
-import { formatEur, formatTonnes, type Dataset } from "@/lib/trade-data";
+import { formatEur, formatTonnes, type Dataset } from "@/src/projects/france-india-trade-forecast/lib/trade-data";
 
 function Kpi({
   label,

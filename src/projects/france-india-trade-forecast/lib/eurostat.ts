@@ -9,6 +9,9 @@ export const COMEXT_DATASET = "DS-045409";
 export const COMEXT_BASE =
   "https://ec.europa.eu/eurostat/api/comext/dissemination/statistics/1.0/data";
 
+/** Same-origin Vite/Express proxy — avoids browser CORS on Eurostat. */
+export const COMEXT_PROXY_BASE = "/api/comext";
+
 /** HS2 chapters + representative HS4 codes used by the dashboard. */
 export const COMEXT_PRODUCTS = [
   "42",
@@ -143,8 +146,7 @@ export function parseComextJsonStat(raw: unknown): TradeExtract {
   };
 }
 
-function buildComextUrl(): string {
-  const url = new URL(`${COMEXT_BASE}/${COMEXT_DATASET.toLowerCase()}`);
+function applyComextParams(url: URL): void {
   url.searchParams.set("format", "JSON");
   url.searchParams.set("lang", "EN");
   url.searchParams.set("reporter", "FR");
@@ -156,22 +158,46 @@ function buildComextUrl(): string {
   url.searchParams.append("flow", "2");
   url.searchParams.append("indicators", "VALUE_IN_EUROS");
   url.searchParams.append("indicators", "QUANTITY_IN_100KG");
-  return url.toString();
+}
+
+function buildComextUrl(base: string): string {
+  if (base.startsWith("http")) {
+    const abs = new URL(`${base}/${COMEXT_DATASET.toLowerCase()}`);
+    applyComextParams(abs);
+    return abs.toString();
+  }
+
+  const origin = typeof window !== "undefined" ? window.location.origin : "http://localhost";
+  const url = new URL(`${base}/${COMEXT_DATASET.toLowerCase()}`, origin);
+  applyComextParams(url);
+  return url.pathname + url.search;
 }
 
 async function fetchComext(): Promise<TradeExtract> {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
   try {
-    const response = await fetch(buildComextUrl(), {
-      signal: controller.signal,
-      headers: { Accept: "application/json" },
-    });
-    if (!response.ok) {
-      throw new Error(`Eurostat Comext HTTP ${response.status}`);
+    // Prefer same-origin proxy (Vite); fall back to direct Comext URL.
+    const targets = [COMEXT_PROXY_BASE, COMEXT_BASE];
+    let lastError: Error | null = null;
+
+    for (const base of targets) {
+      try {
+        const response = await fetch(buildComextUrl(base), {
+          signal: controller.signal,
+          headers: { Accept: "application/json" },
+        });
+        if (!response.ok) {
+          throw new Error(`Eurostat Comext HTTP ${response.status}`);
+        }
+        const json: unknown = await response.json();
+        return parseComextJsonStat(json);
+      } catch (error) {
+        lastError = error instanceof Error ? error : new Error(String(error));
+      }
     }
-    const json: unknown = await response.json();
-    return parseComextJsonStat(json);
+
+    throw lastError ?? new Error("Eurostat Comext request failed");
   } finally {
     clearTimeout(timer);
   }

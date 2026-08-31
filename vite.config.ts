@@ -8,7 +8,7 @@ export default defineConfig(() => {
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, './src'),
+        '@': path.resolve(__dirname, '.'),
       },
     },
     server: {
@@ -17,6 +17,15 @@ export default defineConfig(() => {
       hmr: process.env.DISABLE_HMR !== 'true',
       // Disable file watching when DISABLE_HMR is true to save CPU during agent edits.
       watch: process.env.DISABLE_HMR === 'true' ? null : {},
+      proxy: {
+        // Same-origin proxy so the browser can load Eurostat Comext without CORS issues.
+        '/api/comext': {
+          target: 'https://ec.europa.eu/eurostat/api/comext/dissemination/statistics/1.0/data',
+          changeOrigin: true,
+          rewrite: (p) => p.replace(/^\/api\/comext/, ''),
+          secure: true,
+        },
+      },
     },
   };
 });

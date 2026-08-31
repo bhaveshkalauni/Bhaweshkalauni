@@ -1,4 +1,4 @@
-import type { DatasetMeta } from "@/lib/trade-data";
+import type { DatasetMeta } from "@/src/projects/france-india-trade-forecast/lib/trade-data";
 
 export function Methodology({ meta }: { meta: DatasetMeta }) {
   const source = meta.updated

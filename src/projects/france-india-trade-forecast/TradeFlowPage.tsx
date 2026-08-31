@@ -1,30 +1,40 @@
 import { useEffect, useMemo, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider, useQuery } from "@tanstack/react-query";
+import { Link } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 import { toast } from "sonner";
-import { TopBar, type DataStatus } from "@/components/tradeflow/TopBar";
-import { FilterBar } from "@/components/tradeflow/FilterBar";
-import { KpiCards } from "@/components/tradeflow/KpiCards";
-import { TradeChart } from "@/components/tradeflow/TradeChart";
-import { AlertsPanel } from "@/components/tradeflow/AlertsPanel";
-import { VolumeVsUnitValue, TopCategories } from "@/components/tradeflow/SecondaryCharts";
-import { ExceptionTable } from "@/components/tradeflow/ExceptionTable";
-import { DetailDialog } from "@/components/tradeflow/DetailDialog";
-import { Methodology } from "@/components/tradeflow/Methodology";
-import { EmptyState } from "@/components/tradeflow/shared";
-import { buildAlerts } from "@/lib/alerts";
-import { loadTradeExtract } from "@/lib/eurostat";
-import { buildDatasetFromExtract, extractMeta } from "@/lib/forecast";
+import { TopBar, type DataStatus } from "./components/tradeflow/TopBar";
+import { FilterBar } from "./components/tradeflow/FilterBar";
+import { KpiCards } from "./components/tradeflow/KpiCards";
+import { TradeChart } from "./components/tradeflow/TradeChart";
+import { AlertsPanel } from "./components/tradeflow/AlertsPanel";
+import { VolumeVsUnitValue, TopCategories } from "./components/tradeflow/SecondaryCharts";
+import { ExceptionTable } from "./components/tradeflow/ExceptionTable";
+import { DetailDialog } from "./components/tradeflow/DetailDialog";
+import { Methodology } from "./components/tradeflow/Methodology";
+import { EmptyState } from "./components/tradeflow/shared";
+import { Toaster } from "./components/ui/sonner";
+import { buildAlerts } from "./lib/alerts";
+import { buildDatasetFromExtract, extractMeta } from "./lib/forecast";
+import { getTradeExtract } from "./lib/get-trade-extract";
 import {
   datasetToCsv,
   emptyDataset,
   emptyMeta,
   type Filters,
-} from "@/lib/trade-data";
-import { Toaster } from "sonner";
+} from "./lib/trade-data";
 
 const TRADE_QUERY_KEY = ["trade-extract"] as const;
 
-export default function TradeFlowPage() {
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
+
+function TradeFlowDashboard() {
   const [filters, setFilters] = useState<Filters>({
     flow: "fr_imports_in",
     group: "all",
@@ -34,15 +44,15 @@ export default function TradeFlowPage() {
   const [openId, setOpenId] = useState<string | null>(null);
 
   useEffect(() => {
-    document.title = "TradeFlow Intelligence — France–India Import Forecast";
+    document.documentElement.classList.add("tradeflow");
     return () => {
-      document.title = "Bhawesh Kalauni — Supply Chain & Operations";
+      document.documentElement.classList.remove("tradeflow");
     };
   }, []);
 
   const extractQuery = useQuery({
     queryKey: TRADE_QUERY_KEY,
-    queryFn: () => loadTradeExtract(),
+    queryFn: () => getTradeExtract(),
     staleTime: 60 * 60 * 1000,
     retry: 1,
   });
@@ -86,8 +96,19 @@ export default function TradeFlowPage() {
   };
 
   return (
-    <div className="tradeflow-root min-h-screen bg-background">
-      <TopBar status={status} />
+    <div id="tradeflow-root" className="tradeflow-root min-h-screen bg-background font-sans antialiased">
+      <TopBar
+        status={status}
+        backTo={
+          <Link
+            to="/#projects"
+            className="inline-flex items-center gap-1.5 text-xs font-medium text-navy-soft transition-colors hover:text-navy"
+          >
+            <ArrowLeft className="size-3.5" />
+            Back to Portfolio
+          </Link>
+        }
+      />
 
       <main className="mx-auto max-w-[1440px] space-y-6 px-4 py-8 sm:px-6 lg:px-8">
         <div className="max-w-2xl">
@@ -157,12 +178,20 @@ export default function TradeFlowPage() {
             · monthly, {meta.historyStartLabel} – {meta.historyEndLabel}
             {meta.stale ? " · cached copy" : ""}
           </p>
-          <p>TradeFlow Intelligence · bhaweshkalauni.com</p>
+          <p>TradeFlow Intelligence · portfolio prototype</p>
         </footer>
       </main>
 
       <DetailDialog row={openRow} onClose={() => setOpenId(null)} />
-      <Toaster position="bottom-right" />
+      <Toaster />
     </div>
+  );
+}
+
+export default function TradeFlowPage() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TradeFlowDashboard />
+    </QueryClientProvider>
   );
 }
