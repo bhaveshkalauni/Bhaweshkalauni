@@ -1,46 +1,29 @@
 import { useEffect, useMemo, useState } from "react";
-import { QueryClient, QueryClientProvider, useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { toast } from "sonner";
-import { TopBar, type DataStatus } from "./components/tradeflow/TopBar";
-import { FilterBar } from "./components/tradeflow/FilterBar";
+import { TopBar } from "./components/tradeflow/TopBar";
 import { KpiCards } from "./components/tradeflow/KpiCards";
 import { TradeChart } from "./components/tradeflow/TradeChart";
 import { AlertsPanel } from "./components/tradeflow/AlertsPanel";
 import { VolumeVsUnitValue, TopCategories } from "./components/tradeflow/SecondaryCharts";
 import { ExceptionTable } from "./components/tradeflow/ExceptionTable";
 import { DetailDialog } from "./components/tradeflow/DetailDialog";
-import { Methodology } from "./components/tradeflow/Methodology";
-import { EmptyState } from "./components/tradeflow/shared";
+import { CaseStudySummary } from "./components/tradeflow/CaseStudySummary";
+import { CaseStudyNotes } from "./components/tradeflow/CaseStudyNotes";
 import { Toaster } from "./components/ui/sonner";
-import { buildAlerts } from "./lib/alerts";
-import { buildDatasetFromExtract, extractMeta } from "./lib/forecast";
-import { getTradeExtract } from "./lib/get-trade-extract";
+import { analyzeSoftGoods } from "./lib/analysis";
+import { DATE_RANGES, datasetToCsv } from "./lib/trade-data";
 import {
-  datasetToCsv,
-  emptyDataset,
-  emptyMeta,
-  type Filters,
-} from "./lib/trade-data";
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./components/ui/select";
 
-const TRADE_QUERY_KEY = ["trade-extract"] as const;
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false,
-    },
-  },
-});
-
-function TradeFlowDashboard() {
-  const [filters, setFilters] = useState<Filters>({
-    flow: "fr_imports_in",
-    group: "all",
-    hsLevel: "HS2",
-    range: "24",
-  });
+export default function TradeFlowPage() {
+  const [range, setRange] = useState("24");
   const [openId, setOpenId] = useState<string | null>(null);
 
   useEffect(() => {
@@ -50,55 +33,28 @@ function TradeFlowDashboard() {
     };
   }, []);
 
-  const extractQuery = useQuery({
-    queryKey: TRADE_QUERY_KEY,
-    queryFn: () => getTradeExtract(),
-    staleTime: 60 * 60 * 1000,
-    retry: 1,
-  });
-
-  const data = useMemo(() => {
-    if (!extractQuery.data) return emptyDataset(emptyMeta(false));
-    return buildDatasetFromExtract(extractQuery.data, filters);
-  }, [extractQuery.data, filters]);
-
-  const alerts = useMemo(() => buildAlerts(data, filters.flow), [data, filters.flow]);
+  const months = DATE_RANGES.find((r) => r.id === range)?.months ?? 24;
+  const report = useMemo(() => analyzeSoftGoods(months), [months]);
+  const data = report.dataset;
   const openRow = data.categoryRows.find((r) => r.id === openId) ?? null;
-  const meta = extractQuery.data ? extractMeta(extractQuery.data) : data.meta;
-
-  const status: DataStatus = extractQuery.isError
-    ? "error"
-    : extractQuery.isPending
-      ? "loading"
-      : extractQuery.data?.stale
-        ? "stale"
-        : "live";
-
-  const update = (next: Partial<Filters>) => setFilters((f) => ({ ...f, ...next }));
 
   const handleExport = () => {
-    if (extractQuery.isError || data.isEmpty) {
-      toast.error("Nothing to export", {
-        description: "Wait for Comext data to load, then try again.",
-      });
-      return;
-    }
     const blob = new Blob([datasetToCsv(data)], { type: "text/csv;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `tradeflow-france-india-${meta.latestPeriod || "extract"}.csv`;
+    a.download = `tradeflow-france-india-softgoods-${report.meta.latestPeriod}.csv`;
     a.click();
     URL.revokeObjectURL(url);
-    toast.success("Insight report ready", {
-      description: "France–India inbound flow summary (Eurostat Comext) downloaded.",
+    toast.success("Extract downloaded", {
+      description: "Same baked Comext snapshot the charts use — not a live pull.",
     });
   };
 
   return (
     <div id="tradeflow-root" className="tradeflow-root min-h-screen bg-background font-sans antialiased">
       <TopBar
-        status={status}
+        status="snapshot"
         backTo={
           <Link
             to="/#projects"
@@ -111,87 +67,76 @@ function TradeFlowDashboard() {
       />
 
       <main className="mx-auto max-w-[1440px] space-y-6 px-4 py-8 sm:px-6 lg:px-8">
-        <div className="max-w-2xl">
-          <h1 className="text-2xl font-semibold tracking-tight text-navy sm:text-[1.75rem]">
-            France–India Import Forecast
+        <div className="max-w-3xl">
+          <p className="text-[0.68rem] font-medium uppercase tracking-wide text-slate-muted">
+            Supply chain analytics · HS2 case study
+          </p>
+          <h1 className="mt-2 text-2xl font-semibold tracking-tight text-navy sm:text-[1.75rem]">
+            France–India soft-goods import forecast
           </h1>
           <p className="mt-2 text-sm leading-relaxed text-slate-muted">
-            Identify inbound-flow changes before they become sourcing or inventory problems.
+            A seasonal-naive + trend forecast of France’s imports from India in cotton, apparel,
+            home textiles, and footwear — with a rolling-origin backtest, per-horizon confidence
+            bands, and alerts tied to each chapter’s own noise.
           </p>
         </div>
 
-        <FilterBar filters={filters} onChange={update} onExport={handleExport} />
+        <CaseStudySummary report={report} />
 
-        {extractQuery.isError && !extractQuery.data ? (
-          <div className="space-y-3">
-            <EmptyState
-              title="Live trade data did not load"
-              body="Eurostat Comext is unreachable and there is no cached extract. Check the network connection and retry. No demo figures are shown."
-            />
-            <div className="flex justify-center">
-              <button
-                type="button"
-                onClick={() => void extractQuery.refetch()}
-                className="rounded-md border border-hairline bg-panel px-3 py-1.5 text-xs font-medium text-navy hover:bg-muted"
-              >
-                Retry Comext
-              </button>
-            </div>
-          </div>
-        ) : extractQuery.isPending && !extractQuery.data ? (
-          <>
-            <KpiCards data={emptyDataset(meta)} />
-            <EmptyState
-              title="Loading Eurostat Comext"
-              body="Fetching monthly France–India customs flows. This can take a few seconds on the first request."
-            />
-          </>
-        ) : (
-          <>
-            {status === "stale" ? (
-              <p className="rounded-md border border-saffron/30 bg-saffron-soft/40 px-4 py-2 text-xs text-navy-soft">
-                Showing the last successful Comext extract. A fresh pull failed; figures may lag the
-                official release.
-              </p>
-            ) : null}
-            <KpiCards data={data} />
+        <div className="flex flex-wrap items-end justify-between gap-3 rounded-lg border border-hairline bg-panel px-4 py-3">
+          <label className="flex min-w-[12rem] flex-col gap-1.5">
+            <span className="text-[0.68rem] font-medium uppercase tracking-wide text-slate-muted">
+              Chart window
+            </span>
+            <Select value={range} onValueChange={setRange}>
+              <SelectTrigger className="border-hairline bg-background text-sm shadow-none">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent className="border-hairline bg-panel">
+                {DATE_RANGES.map((r) => (
+                  <SelectItem key={r.id} value={r.id}>
+                    {r.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </label>
+          <button
+            type="button"
+            onClick={handleExport}
+            className="h-9 rounded-md border border-navy bg-navy px-3 text-xs font-medium text-panel hover:bg-navy-soft"
+          >
+            Download snapshot CSV
+          </button>
+        </div>
 
-            <div className="grid gap-6 lg:grid-cols-[1.75fr_1fr]">
-              <TradeChart data={data} />
-              <AlertsPanel alerts={alerts} onOpen={setOpenId} />
-            </div>
+        <KpiCards data={data} />
 
-            <div className="grid gap-6 lg:grid-cols-2">
-              <VolumeVsUnitValue data={data} />
-              <TopCategories data={data} />
-            </div>
+        <div className="grid gap-6 lg:grid-cols-[1.75fr_1fr]">
+          <TradeChart data={data} />
+          <AlertsPanel alerts={report.alerts} onOpen={setOpenId} />
+        </div>
 
-            <ExceptionTable data={data} hsLevel={filters.hsLevel} onOpen={setOpenId} />
-          </>
-        )}
+        <div className="grid gap-6 lg:grid-cols-2">
+          <VolumeVsUnitValue data={data} />
+          <TopCategories data={data} />
+        </div>
 
-        <Methodology meta={meta} />
+        <ExceptionTable data={data} hsLevel="HS2" onOpen={setOpenId} />
 
-        <footer className="flex flex-wrap items-center justify-between gap-2 border-t border-hairline pt-4 text-[0.7rem] text-slate-muted">
-          <p>
-            Data source: <span className="font-medium text-navy-soft">Eurostat Comext {meta.datasetId}</span>{" "}
-            · monthly, {meta.historyStartLabel} – {meta.historyEndLabel}
-            {meta.stale ? " · cached copy" : ""}
-          </p>
-          <p>TradeFlow Intelligence · portfolio prototype</p>
-        </footer>
+        <p className="text-xs leading-relaxed text-slate-muted">
+          Snapshot: Eurostat Comext {report.meta.datasetId} · {report.meta.historyStartLabel} –{" "}
+          {report.meta.historyEndLabel} · France imports from India · HS2 52 / 61 / 62 / 63 / 64.
+          Forecasts and bands are computed from that file, not from a live API.
+        </p>
+
+        <div className="border-t border-hairline pt-10">
+          <CaseStudyNotes report={report} />
+        </div>
       </main>
 
       <DetailDialog row={openRow} onClose={() => setOpenId(null)} />
       <Toaster />
     </div>
-  );
-}
-
-export default function TradeFlowPage() {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <TradeFlowDashboard />
-    </QueryClientProvider>
   );
 }

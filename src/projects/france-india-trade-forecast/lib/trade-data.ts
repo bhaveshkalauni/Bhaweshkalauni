@@ -20,7 +20,7 @@ export const CATEGORIES: CategoryMeta[] = [
 const CORE_CATEGORY_IDS = ["knitted", "woven", "yarn", "home", "footwear"] as const;
 
 export const PRODUCT_GROUPS: { id: string; label: string; categories: string[] }[] = [
-  { id: "all", label: "Apparel & textiles", categories: [...CORE_CATEGORY_IDS] },
+  { id: "all", label: "Soft goods (HS 52/61/62/63/64)", categories: [...CORE_CATEGORY_IDS] },
   { id: "apparel", label: "Apparel only", categories: ["knitted", "woven"] },
   { id: "yarn", label: "Yarn & fibre", categories: ["yarn"] },
   { id: "home", label: "Home textiles", categories: ["home"] },

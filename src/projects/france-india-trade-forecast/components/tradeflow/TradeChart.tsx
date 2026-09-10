@@ -35,7 +35,7 @@ export function TradeChart({ data }: { data: Dataset }) {
   return (
     <Panel
       title="Monthly inbound trade value"
-      subtitle="Reported monthly value with a three-month projection and confidence band."
+        subtitle="Reported monthly value with a three-month projection. Band width is per-horizon residual σ, not √h."
       action={
         <LegendRow
           actualTo={data.meta?.latestMonthLabel ?? "latest"}

@@ -1,10 +1,11 @@
 import { ArrowLeft } from "lucide-react";
 import type { ReactNode } from "react";
 
-export type DataStatus = "live" | "stale" | "loading" | "error";
+export type DataStatus = "live" | "stale" | "loading" | "error" | "snapshot";
 
 const BADGE: Record<DataStatus, { label: string; dot: string }> = {
   live: { label: "Live · Eurostat Comext", dot: "bg-teal" },
+  snapshot: { label: "Snapshot · Eurostat Comext", dot: "bg-teal" },
   stale: { label: "Stale cache · Eurostat", dot: "bg-saffron" },
   loading: { label: "Loading Comext", dot: "bg-navy-soft" },
   error: { label: "Comext unavailable", dot: "bg-saffron" },
@@ -26,7 +27,7 @@ export function TopBar({
             TradeFlow Intelligence
           </span>
           <span className="hidden truncate text-xs text-slate-muted sm:inline">
-            France ↔ India | Apparel &amp; Textile Flows
+            France → India | Soft-goods imports
           </span>
         </div>
         <div className="ml-auto flex items-center gap-3">
