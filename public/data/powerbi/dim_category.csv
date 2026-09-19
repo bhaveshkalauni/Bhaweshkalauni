@@ -1,0 +1,6 @@
+HS2,Category,Family,Basket,AnnualizedCV,LatestZ,Severity,GrowthG,BeatsSeasonalAtH1,Note
+52,Cotton yarn,Textile,Soft goods,1.1629230781639992,-0.716581263241914,Low,0.013226497188171649,false,Textile chapter.
+61,Knitted apparel,Textile,Soft goods,0.7861791876333685,0.5900296023079418,Low,-0.04516154512815405,true,Textile chapter.
+62,Woven apparel,Textile,Soft goods,1.2488503271935463,0.19721171652294442,Low,-0.04334181878271401,false,Textile chapter.
+63,Home textiles,Textile,Soft goods,0.9867922146886321,0.8331488709597542,Low,-0.04999285660716959,false,Textile chapter.
+64,Footwear,Footwear,Soft goods,1.0142181729963768,-0.06702298753168186,Low,-0.19173353243114474,false,Footwear — keep in the soft-goods basket; a textiles-only Eurostat table will not reconcile.

@@ -109,7 +109,7 @@ export const caseStudies: CaseStudyItem[] = [
       "Medium z (1.5–2): watch the next two arrivals before changing safety stock.",
       "Inside corridor: keep standard replenishment cadence.",
     ],
-    toolsUsed: ["Eurostat Comext", "Excel / Power Query (planned)", "Power BI (planned)", "React", "TypeScript"],
+    toolsUsed: ["Eurostat Comext", "Excel", "Power BI (Desktop model)", "React", "TypeScript"],
     tags: [
       "France–India",
       "Trade forecast",

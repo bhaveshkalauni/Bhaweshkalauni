@@ -189,6 +189,18 @@ export function forecastAt(
   return seasonal * (1 + g);
 }
 
+export interface WalkForwardRow {
+  originIndex: number;
+  originPeriod: string;
+  targetPeriod: string;
+  horizon: 1 | 2 | 3;
+  method: MethodId;
+  actual: number;
+  forecast: number;
+  ape: number;
+  residualPct: number;
+}
+
 interface Residual {
   period: string;
   horizon: 1 | 2 | 3;
@@ -197,8 +209,8 @@ interface Residual {
   bandE: number;
 }
 
-function backtestSeries(times: string[], values: (number | null)[]): Residual[] {
-  const out: Residual[] = [];
+export function walkForwardRows(times: string[], values: (number | null)[]): WalkForwardRow[] {
+  const out: WalkForwardRow[] = [];
   const last = values.length - 1;
   for (let origin = 23; origin < last; origin += 1) {
     for (const horizon of [1, 2, 3] as const) {
@@ -210,16 +222,30 @@ function backtestSeries(times: string[], values: (number | null)[]): Residual[] 
         const f = forecastAt(values, origin, horizon, method);
         if (f == null) continue;
         out.push({
-          period: times[t]!,
+          originIndex: origin,
+          originPeriod: times[origin]!,
+          targetPeriod: times[t]!,
           horizon,
           method,
+          actual,
+          forecast: f,
           ape: Math.abs(f - actual) / Math.abs(actual),
-          bandE: (actual - f) / f,
+          residualPct: (actual - f) / f,
         });
       }
     }
   }
   return out;
+}
+
+function backtestSeries(times: string[], values: (number | null)[]): Residual[] {
+  return walkForwardRows(times, values).map((row) => ({
+    period: row.targetPeriod,
+    horizon: row.horizon,
+    method: row.method,
+    ape: row.ape,
+    bandE: row.residualPct,
+  }));
 }
 
 function accuracyFrom(residuals: Residual[], method: MethodId, horizon: 1 | 2 | 3): AccuracyCell {
@@ -241,7 +267,7 @@ function allAccuracy(residuals: Residual[]): AccuracyCell[] {
   return cells;
 }
 
-function bandsFrom(residuals: Residual[]): HorizonBand[] {
+export function bandsFrom(residuals: Residual[]): HorizonBand[] {
   return ([1, 2, 3] as const).map((horizon) => {
     const e = residuals.filter((r) => r.method === "trend" && r.horizon === horizon).map((r) => r.bandE);
     const skew = skewness(e);
@@ -257,7 +283,7 @@ function bandsFrom(residuals: Residual[]): HorizonBand[] {
   });
 }
 
-function applyBand(f: number, band: HorizonBand): { lower: number; upper: number } {
+export function applyBand(f: number, band: HorizonBand): { lower: number; upper: number } {
   if (band.usePercentiles && Number.isFinite(band.p10) && Number.isFinite(band.p90)) {
     return {
       lower: f * (1 + Math.min(band.p10, band.p90)),

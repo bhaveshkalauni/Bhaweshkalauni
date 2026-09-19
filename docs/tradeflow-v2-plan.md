@@ -84,5 +84,5 @@ Route: `/projects/france-india-trade-forecast`
 2. Project view from the baked extract (charts, KPIs, alerts).
 3. Tier 2 methodology notes after the project.
 
-Excel / Power BI remain the modelling artefacts for later; this repo ships the extract, the
-engine, and the case study page.
+Excel / Power BI remain the modelling artefacts; this repo ships the extract, the engine,
+the workbook, the Power BI pack, and the case study page.
