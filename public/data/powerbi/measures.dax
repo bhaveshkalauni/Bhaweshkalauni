@@ -1,0 +1,69 @@
+/* TradeFlow measures — define these before building visuals.
+   Mark DimDate[Date] as the official Date table.
+   Relate DimDate[Date] 1:* FactImports[Date]
+          DimCategory[HS2] 1:* FactImports[HS2]
+          DimDate[Date] 1:* FactForecast[Date]
+          DimCategory[HS2] 1:* FactForecast[HS2]  (filter FactForecast Grain = "category")
+   Volatility lives on DimCategory. Never SUM it.
+*/
+
+Import Value :=
+SUM ( FactImports[ValueEUR] )
+
+Import Value R12 :=
+CALCULATE (
+    [Import Value],
+    DATESINPERIOD ( DimDate[Date], MAX ( DimDate[Date] ), -12, MONTH )
+)
+
+Import Value R12 YoY % :=
+VAR Curr = [Import Value R12]
+VAR Prev =
+    CALCULATE ( [Import Value R12], SAMEPERIODLASTYEAR ( DimDate[Date] ) )
+RETURN
+    DIVIDE ( Curr - Prev, Prev )
+
+Volume Tonnes :=
+SUM ( FactImports[WeightTonnes] )
+
+Volume R12 t :=
+CALCULATE (
+    [Volume Tonnes],
+    DATESINPERIOD ( DimDate[Date], MAX ( DimDate[Date] ), -12, MONTH )
+)
+
+Unit Value EUR per kg :=
+DIVIDE ( [Import Value], SUM ( FactImports[WeightKg] ) )
+
+Forecast 3M EUR :=
+CALCULATE (
+    SUM ( FactForecast[ForecastEUR] ),
+    FactForecast[Grain] = "basket",
+    FactForecast[Horizon] IN { 1, 2, 3 }
+)
+
+Band Lower 3M :=
+CALCULATE (
+    SUM ( FactForecast[BandLowerEUR] ),
+    FactForecast[Grain] = "basket"
+)
+
+Band Upper 3M :=
+CALCULATE (
+    SUM ( FactForecast[BandUpperEUR] ),
+    FactForecast[Grain] = "basket"
+)
+
+Selected CV :=
+SELECTEDVALUE ( DimCategory[AnnualizedCV] )
+
+Selected Z :=
+SELECTEDVALUE ( DimCategory[LatestZ] )
+
+MAPE Trend h1 :=
+CALCULATE (
+    AVERAGE ( FactBacktest[APE] ),
+    FactBacktest[Grain] = "basket",
+    FactBacktest[Horizon] = 1,
+    FactBacktest[Method] = "seasonal-naive + trend"
+)

@@ -1,0 +1,55 @@
+Grain,HS2,Category,Method,Horizon,N,MAPE,MdAPE
+basket,BASKET,Soft goods basket,seasonal-naive + trend,1,162,0.1347848533163415,0.09565504307153089
+basket,BASKET,Soft goods basket,seasonal-naive + trend,2,161,0.14409469887021578,0.09659473232945567
+basket,BASKET,Soft goods basket,seasonal-naive + trend,3,160,0.15187158805576578,0.11122112578929039
+basket,BASKET,Soft goods basket,seasonal-naive,1,162,0.13510543511658069,0.10291706066674536
+basket,BASKET,Soft goods basket,seasonal-naive,2,161,0.13487342954172923,0.10217049154681318
+basket,BASKET,Soft goods basket,seasonal-naive,3,160,0.13451292792905167,0.10091349888963311
+basket,BASKET,Soft goods basket,last-month naive,1,162,0.1453505373040757,0.12094503044062097
+basket,BASKET,Soft goods basket,last-month naive,2,161,0.22533132098443376,0.18437729430770525
+basket,BASKET,Soft goods basket,last-month naive,3,160,0.2739939983536154,0.263920441812007
+category,52,Cotton yarn,seasonal-naive + trend,1,162,0.3398494121391829,0.23992788781421082
+category,52,Cotton yarn,seasonal-naive + trend,2,161,0.3376132551473279,0.23218648637787997
+category,52,Cotton yarn,seasonal-naive + trend,3,160,0.33401507233543204,0.22411004612340601
+category,52,Cotton yarn,seasonal-naive,1,162,0.29332698227032555,0.22944449910761555
+category,52,Cotton yarn,seasonal-naive,2,161,0.29312148528266485,0.2276651358322783
+category,52,Cotton yarn,seasonal-naive,3,160,0.29444662183812464,0.22944449910761555
+category,52,Cotton yarn,last-month naive,1,162,0.3188199168231025,0.27684468133539997
+category,52,Cotton yarn,last-month naive,2,161,0.3386282969462321,0.26693820530078566
+category,52,Cotton yarn,last-month naive,3,160,0.317271693919533,0.23551560924425397
+category,61,Knitted apparel,seasonal-naive + trend,1,162,0.16684960645287195,0.11444484024269783
+category,61,Knitted apparel,seasonal-naive + trend,2,161,0.1812879821887666,0.11775023558311186
+category,61,Knitted apparel,seasonal-naive + trend,3,160,0.1915995897577341,0.12386594975920105
+category,61,Knitted apparel,seasonal-naive,1,162,0.168382873133654,0.11685440694616517
+category,61,Knitted apparel,seasonal-naive,2,161,0.16837277678343657,0.11514464583338922
+category,61,Knitted apparel,seasonal-naive,3,160,0.16866676557235288,0.11509404200635447
+category,61,Knitted apparel,last-month naive,1,162,0.15229785698156842,0.13827761813537437
+category,61,Knitted apparel,last-month naive,2,161,0.23475345463884295,0.1794620867243508
+category,61,Knitted apparel,last-month naive,3,160,0.2778141307610481,0.19761172255396037
+category,62,Woven apparel,seasonal-naive + trend,1,162,0.15219438724216186,0.09675928112059327
+category,62,Woven apparel,seasonal-naive + trend,2,161,0.16236958763038337,0.10780771565655538
+category,62,Woven apparel,seasonal-naive + trend,3,160,0.16660021989556906,0.1064939712011416
+category,62,Woven apparel,seasonal-naive,1,162,0.15182610120223497,0.09572617575146633
+category,62,Woven apparel,seasonal-naive,2,161,0.15127579321540022,0.09436420074282736
+category,62,Woven apparel,seasonal-naive,3,160,0.1497077965674883,0.09403820513348456
+category,62,Woven apparel,last-month naive,1,162,0.2065844357312208,0.18008577917816557
+category,62,Woven apparel,last-month naive,2,161,0.3472834072469013,0.3217003311920404
+category,62,Woven apparel,last-month naive,3,160,0.459069247476877,0.4230368784327745
+category,63,Home textiles,seasonal-naive + trend,1,162,0.18556416916525686,0.12339411545886844
+category,63,Home textiles,seasonal-naive + trend,2,161,0.19870721464690366,0.14255275420545763
+category,63,Home textiles,seasonal-naive + trend,3,160,0.2110918465956903,0.14444602076230106
+category,63,Home textiles,seasonal-naive,1,162,0.17262188587265606,0.12479516509362337
+category,63,Home textiles,seasonal-naive,2,161,0.1727733939628081,0.12253732838186761
+category,63,Home textiles,seasonal-naive,3,160,0.17333808164867986,0.12479516509362337
+category,63,Home textiles,last-month naive,1,162,0.15623871847152251,0.1267471239082532
+category,63,Home textiles,last-month naive,2,161,0.17457794761850026,0.1255407905807812
+category,63,Home textiles,last-month naive,3,160,0.18842454938193673,0.128052369669708
+category,64,Footwear,seasonal-naive + trend,1,162,0.19856431807194608,0.15724670870175017
+category,64,Footwear,seasonal-naive + trend,2,161,0.20566317941924853,0.15802886732512375
+category,64,Footwear,seasonal-naive + trend,3,160,0.2120594592229926,0.1747895286011164
+category,64,Footwear,seasonal-naive,1,162,0.19281049009914478,0.1312892220919684
+category,64,Footwear,seasonal-naive,2,161,0.19399054661982376,0.13329989963360062
+category,64,Footwear,seasonal-naive,3,160,0.19462572053039182,0.13404408105811114
+category,64,Footwear,last-month naive,1,162,0.2547523381435135,0.21613575273866587
+category,64,Footwear,last-month naive,2,161,0.42344480589111383,0.35190755386913675
+category,64,Footwear,last-month naive,3,160,0.48306683697624386,0.3807784738613787

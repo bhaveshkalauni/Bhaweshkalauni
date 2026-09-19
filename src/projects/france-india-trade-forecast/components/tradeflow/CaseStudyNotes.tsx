@@ -48,9 +48,10 @@ export function CaseStudyNotes({ report }: { report: AnalysisReport }) {
               : "."}
           </p>
           <p>
-            The page reads a JSON snapshot baked at build time. The Vite `/api/comext` proxy does not
-            exist in production, so a live browser fetch would depend on Eurostat CORS and fail
-            silently. A static extract also means the charts quote the same numbers a workbook would.
+            The page, the Excel workbook, and the Power BI tables are built from the same JSON
+            snapshot. The Vite `/api/comext` proxy does not exist in production, so a live browser
+            fetch would depend on Eurostat CORS and fail silently. Baking the extract keeps the three
+            surfaces on one number.
           </p>
         </div>
       </Panel>
@@ -145,6 +146,10 @@ export function CaseStudyNotes({ report }: { report: AnalysisReport }) {
             Relabelled the basket from “apparel & textiles” to “soft goods” once HS 64 (footwear)
             was kept in scope.
           </li>
+          <li>
+            Built the Excel star schema and Power BI pack from the same extract as this page so the
+            three surfaces reconcile by construction, rather than connecting Power BI to the API.
+          </li>
           {report.redSea.afterMape != null && report.redSea.beforeMape != null ? (
             <li>
               Split the backtest at Nov 2023 (Red Sea diversions / Cape routing). Basket h = 1 MAPE
@@ -160,16 +165,17 @@ export function CaseStudyNotes({ report }: { report: AnalysisReport }) {
         <ul className="list-disc space-y-2 pl-5 text-sm leading-relaxed text-navy-soft">
           <li>HS2 only. HS4 needs a second dimension table and a working drill path.</li>
           <li>
-            Static snapshot. Refresh is `npm run fetch:comext`, not a scheduled pipeline. In
-            production the workbook would sit behind a gateway; here the JSON is the workbook.
+            Static snapshot. Refresh is `npm run fetch:comext` then `npm run artifacts:tradeflow`.
+            Production would put the workbook behind a gateway; here the JSON is the workbook.
           </li>
           <li>
             Confidential Comext cells are suppressed, not zero. Partner totals can run low even when
             this five-chapter extract looks complete.
           </li>
           <li>
-            Excel and Power BI remain the intended modelling artefacts for a planner audience. This
-            page is the case study wrapper because Power BI publish-to-web needs a Pro tenant.
+            Excel is the modelling artifact (star schema, backtest, calculator formulas). Power BI
+            is a Desktop rebuild from that workbook — publish-to-web needs a Pro tenant, so this
+            page is the public surface. Volume vs price decomposition is on the VolumePrice sheet.
           </li>
         </ul>
       </Panel>

@@ -101,13 +101,29 @@ export default function TradeFlowPage() {
               </SelectContent>
             </Select>
           </label>
-          <button
-            type="button"
-            onClick={handleExport}
-            className="h-9 rounded-md border border-navy bg-navy px-3 text-xs font-medium text-panel hover:bg-navy-soft"
-          >
-            Download snapshot CSV
-          </button>
+          <div className="flex flex-wrap items-center gap-2">
+            <button
+              type="button"
+              onClick={handleExport}
+              className="h-9 rounded-md border border-navy bg-navy px-3 text-xs font-medium text-panel hover:bg-navy-soft"
+            >
+              Download snapshot CSV
+            </button>
+            <a
+              href="/data/tradeflow-france-india-softgoods.xlsx"
+              download
+              className="inline-flex h-9 items-center rounded-md border border-navy px-3 text-xs font-medium text-navy hover:bg-panel"
+            >
+              Download Excel model
+            </a>
+            <a
+              href="/data/tradeflow-powerbi.zip"
+              download
+              className="inline-flex h-9 items-center rounded-md border border-navy px-3 text-xs font-medium text-navy hover:bg-panel"
+            >
+              Download Power BI pack
+            </a>
+          </div>
         </div>
 
         <KpiCards data={data} />
